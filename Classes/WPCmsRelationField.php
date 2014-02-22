@@ -5,7 +5,7 @@ Class WPCmsRelationField Extends WPCmsField {
   function __construct ($config)
   {
     $this->id = WPCmsStatus::getStatus()->getData('pre') . $this->normalize($config['id']);
-    $this->inverse = $this->normalize($config['inverse']);
+    $this->inverse = isset($config['inverse']) ? $this->normalize($config['inverse']) : '';
     $this->name = isset($config['name']) ? $config['name'] : '';
     $this->description = isset($config['description']) ? $config['description'] : '';
     $this->default = isset($config['default']) ? $config['default'] : '';
