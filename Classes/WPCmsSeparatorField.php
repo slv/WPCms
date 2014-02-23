@@ -43,7 +43,7 @@ Class WPCmsSeparatorField Extends WPCmsField {
 //
 
   public function settingValue ($suffix = '') {}
-  public function registerSettingInOptionsGroup ($optionsGroup) {}
+  public function registerSettingInOptionsGroup ($optionsGroup, $suffix = '') {}
 
   public function sanitizeSetting ($data) {
     return $data;
