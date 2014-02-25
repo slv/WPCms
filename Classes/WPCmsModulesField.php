@@ -23,7 +23,7 @@ Class WPCmsModulesField Extends WPCmsField {
 
   public function addActionAdminEnqueueScripts ($hook)
   {
-    wp_enqueue_script('wpcms-modules', WPCMS_STYLESHEET_URI . '/WPCms/assets/modules.field.js', array('jquery', 'jquery-ui-core', 'jquery-ui-droppable'));
+    wp_enqueue_script('wpcms-modules', WPCMS_STYLESHEET_URI . '/WPCms/assets/modules.field.js', array('jquery', 'jquery-ui-core', 'jquery-ui-droppable', 'jquery-ui-sortable'));
     wp_enqueue_style('wpcms-modules', WPCMS_STYLESHEET_URI . '/WPCms/assets/modules.field.css');
 
     foreach ($this->modules as $module) {
