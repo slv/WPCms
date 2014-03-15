@@ -9,7 +9,7 @@ Class WPCmsSeparatorField Extends WPCmsField {
     }
   }
 
-  public function render ($post) {
+  public function render ($post, $data = array()) {
 
     echo '<table class="form-table">',
       '<tr valign="middle">',

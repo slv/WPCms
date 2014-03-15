@@ -1,4 +1,4 @@
-if (typeof _WPCmsGlobalInit == "undefined") _WPCmsGlobalInit = {};
+if (typeof _WPCmsGlobalInit === "undefined") _WPCmsGlobalInit = {};
 
 jQuery(document).ready(function ($) {
 
@@ -11,13 +11,13 @@ jQuery(document).ready(function ($) {
       sortable.find('.module').each(function (k) {
         var module = $(this),
             order = k+1;
-        module.find('input, select').each(function (k) {
+        module.find('input, select, textarea').each(function (k) {
           var startingId = $(this).attr('id');
 
-          if ($(this).attr('type') == 'radio')
+          if ($(this).attr('type') === 'radio')
             startingId = module.find('fieldset').first().attr('id');
 
-          if (startingId && ~startingId.indexOf('____')) {
+          if (startingId && startingId.indexOf('____') >= 0) {
             var name = startingId.replace('____', '[' + order + ']');
             $(this).attr('name', name);
           }
@@ -31,7 +31,7 @@ jQuery(document).ready(function ($) {
       $.each(_WPCmsGlobalInit, function (Field, Init) {
         Init($);
       });
-    };
+    }
 
     $(field).find('.modules-list-droppable').sortable({
       start: function (event, ui) {

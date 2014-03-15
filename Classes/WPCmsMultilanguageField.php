@@ -30,9 +30,12 @@ Class WPCmsMultilanguageField {
     $this->field->addActionAdminEnqueueScripts($hook);
   }
 
-  public function render ($post) {
+  public function render ($post, $data = array()) {
 
-    $meta = $this->value($post->ID);
+    if (isset($data['value']) && is_array($data['value']))
+      $meta = $data['value'];
+    else
+      $meta = $this->value($post->ID);
 
     $this->field->willRender($post);
     $this->field->renderLabel($post);
@@ -50,15 +53,18 @@ Class WPCmsMultilanguageField {
 
     foreach ($this->languages as $k => $lang) {
 
-      $data = array(
-        'id' => $this->field->id . '__' . $lang,
-        'name' => $this->field->id . '__' . $lang,
+      $field_data = array(
+        'id' => $this->field->id . '[' . $lang . ']',
+        'name' => $this->field->id . '[' . $lang . ']',
         'value' => $meta[$lang]
       );
 
+      if (isset($data['id']))
+        $field_data['id'] = str_replace("[" . $data['name'] . "]", "[" . $data['name'] . "][" . $lang . "]", $data['id']);
+
       echo '<div class="multilingual-wrapper ord-', $k, ' lang-', $lang, '">';
 
-      $this->field->renderInnerInput($post, $data);
+      $this->field->renderInnerInput($post, $field_data);
 
       echo '</div>';
     }
@@ -69,54 +75,41 @@ Class WPCmsMultilanguageField {
   }
 
   public function value ($postID) {
+    $out = $this->field->value($postID);
 
-    $out = array();
+    if (!is_array($out))
+      $out = array();
+
     foreach ($this->languages as $lang) {
 
-      $out[$lang] = $this->field->value($postID, '__' . $lang);
+      $out[$lang] = isset($out[$lang]) ? $out[$lang] : '';
     }
     return $out;
   }
 
   public function save ($postID) {
-
-    foreach ($this->languages as $lang) {
-
-      $this->field->save($postID, '__' . $lang);
-    }
+    $this->field->save($postID);
   }
 
   public function handleRevision ($postID) {
-
-    foreach ($this->languages as $lang) {
-
-      $this->field->handleRevision($postID, '__' . $lang);
-    }
+    $this->field->handleRevision($postID);
   }
 
   public function handleRestoreRevision ($postID, $revisionID, $suffix = '') {
-
-    foreach ($this->languages as $lang) {
-
-      $this->field->handleRestoreRevision($postID, $revisionID, '__' . $lang);
-    }
+    $this->field->handleRestoreRevision($postID, $revisionID);
   }
 
   public function revisionFields ($fields) {
 
     foreach ($this->languages as $lang) {
 
-      $fields[$this->id . '__' . $lang] = $this->name . " [$lang]";
+      $fields[$this->id][$lang] = $this->name . " [$lang]";
     }
     return $fields;
   }
 
   public function addRevisionFilter ($suffix = '') {
-
-    foreach ($this->languages as $lang) {
-
-      $this->field->addRevisionFilter('__' . $lang);
-    }
+    $this->field->addRevisionFilter($suffix);
   }
 
 //
@@ -124,21 +117,20 @@ Class WPCmsMultilanguageField {
 //
 
   public function settingValue ($suffix = '') {
+    $out = $this->field->settingValue($suffix);
 
-    $out = array();
+    if (!is_array($out))
+      $out = array();
+
     foreach ($this->languages as $lang) {
 
-      $out[$lang] = $this->field->settingValue('__' . $lang);
+      $out[$lang] = isset($out[$lang]) ? $out[$lang] : '';
     }
     return $out;
   }
 
   public function registerSettingInOptionsGroup ($optionsGroup) {
-
-    foreach ($this->languages as $lang) {
-
-      $this->field->registerSettingInOptionsGroup ($optionsGroup, '__' . $lang);
-    }
+    $this->field->registerSettingInOptionsGroup ($optionsGroup);
   }
 
   public function renderSetting () {
@@ -162,8 +154,8 @@ Class WPCmsMultilanguageField {
     foreach ($this->languages as $k => $lang) {
 
       $data = array(
-        'id' => $this->field->id . '__' . $lang,
-        'name' => $this->field->id . '__' . $lang,
+        'id' => $this->field->id . '[' . $lang . ']',
+        'name' => $this->field->id . '[' . $lang . ']',
         'value' => $option[$lang]
       );
 

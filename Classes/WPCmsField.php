@@ -61,12 +61,12 @@ Abstract Class WPCmsField {
       '</table>';
   }
 
-  public function render ($post) {
+  public function render ($post, $data = array()) {
 
     $this->willRender($post);
 
     $this->renderLabel($post);
-    $this->renderInput($post);
+    $this->renderInput($post, $data);
 
     $this->didRender($post);
   }

@@ -79,13 +79,7 @@ Class WPCmsModulesField Extends WPCmsField {
             'value' => isset($module_data[$field->id]) ? $module_data[$field->id] : ''
           );
 
-          $field->willRender($post);
-
-          $field->renderLabel($post);
-          $field->renderInput($post, $field_data);
-
-          $field->didRender($post);
-
+          $field->render($post, $field_data);
         }
 
         echo '</div></div></div>';
@@ -109,12 +103,7 @@ Class WPCmsModulesField Extends WPCmsField {
             'value' => isset($field->default) ? $field->default : ''
           );
 
-          $field->willRender($post);
-
-          $field->renderLabel($post);
-          $field->renderInput($post, $field_data);
-
-          $field->didRender($post);
+          $field->render($post, $field_data);
 
         }
 

@@ -7,10 +7,30 @@ function _o($label, $default = '') {
   return get_option(WPCmsStatus::getStatus()->getData('pre') . $label, $default);
 }
 
+function _ol($label, $lang, $default = '') {
+
+  $out = get_option(WPCmsStatus::getStatus()->getData('pre') . $label, $default);
+  if (!is_array($out) || !isset($out[$lang]))
+    return $out;
+
+  return $out[$lang];
+}
+
 function _m($label, $postID = false) {
   if (!$postID) $postID = get_the_ID();
 
   return get_post_meta($postID, WPCmsStatus::getStatus()->getData('pre') . $label, true);
+}
+
+function _ml($label, $lang, $postID = false) {
+  if (!$postID) $postID = get_the_ID();
+
+  $meta = get_post_meta($postID, WPCmsStatus::getStatus()->getData('pre') . $label, true);
+
+  if (!is_array($meta) || !isset($meta[$lang]))
+    return $meta;
+
+  return $meta[$lang];
 }
 
 function _is_related_to($label, $postID = false) {
