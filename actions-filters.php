@@ -7,30 +7,20 @@ function _o($label, $default = '') {
   return get_option(WPCmsStatus::getStatus()->getData('pre') . $label, $default);
 }
 
-function _ol($label, $lang, $default = '') {
+function _l($value, $lang = false) {
+  if (!$lang && function_exists('wpcms_get_language'))
+    $lang = wpcms_get_language();
 
-  $out = get_option(WPCmsStatus::getStatus()->getData('pre') . $label, $default);
-  if (!is_array($out) || !isset($out[$lang]))
-    return $out;
+  if (!is_array($value) || !isset($value[$lang]))
+    return $value;
 
-  return $out[$lang];
+  return $value[$lang];
 }
 
 function _m($label, $postID = false) {
   if (!$postID) $postID = get_the_ID();
 
   return get_post_meta($postID, WPCmsStatus::getStatus()->getData('pre') . $label, true);
-}
-
-function _ml($label, $lang, $postID = false) {
-  if (!$postID) $postID = get_the_ID();
-
-  $meta = get_post_meta($postID, WPCmsStatus::getStatus()->getData('pre') . $label, true);
-
-  if (!is_array($meta) || !isset($meta[$lang]))
-    return $meta;
-
-  return $meta[$lang];
 }
 
 function _is_related_to($label, $postID = false) {
