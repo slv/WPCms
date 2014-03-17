@@ -1,5 +1,37 @@
 <?php
 
+// Multilanguage
+
+if (!defined('WPCMS_DEFAULT_LANG'))
+  define ('WPCMS_DEFAULT_LANG', 'en');
+
+
+function wpcms_get_available_languages () {
+  if (function_exists('qtrans_getSortedLanguages'))
+    return qtrans_getSortedLanguages();
+
+  return array(WPCMS_DEFAULT_LANG);
+};
+
+function wpcms_get_language () {
+  if (function_exists('qtrans_getLanguage'))
+    return qtrans_getLanguage();
+
+  return WPCMS_DEFAULT_LANG;
+};
+
+function wpcms_get_language_url ($url, $lang) {
+  if (!$lang)
+    $lang = wpcms_get_language();
+
+  if (function_exists('qtrans_convertURL'))
+    return qtrans_convertURL($url, $lang);
+
+  return $url;
+};
+
+
+
 // Options Retriever
 
 function _o($label, $default = '') {
