@@ -68,7 +68,7 @@ Class WPCmsModulesField Extends WPCmsField {
 
         $module = $modules_cache[$module_data['widget_type']];
 
-        echo '<div class="module"><a>', $module['name'], '</a><div class="module-inside"><h3>Inside of ', $module['name'], '</h3><div class="module-remove">remove</div><div class="form">
+        echo '<div class="module"><a>', $module['name'], '</a><div class="module-inside"><h3>', $module['name'], '</h3><div class="module-remove">X</div><div class="form">
           <input type="hidden" id="', $data['id'], '____[widget_type]" value="', $module['type'], '" />';
 
         $module['fields'] = require get_template_directory() . "/Modules/" . $module['type'] . "/admin.php";
@@ -92,14 +92,14 @@ Class WPCmsModulesField Extends WPCmsField {
     echo '<div class="modules-list" id="', $data['id'], '_wrapper">';
 
     foreach ($this->modules as $module) {
-      echo '<div class="module"><a>', $module['name'], '</a><div class="module-inside"><h3>Inside of ', $module['name'], '</h3><div class="module-remove">remove</div><div class="form">
+      echo '<div class="module"><a>', $module['name'], '</a><div class="module-inside"><h3>', $module['name'], '</h3><div class="module-remove">X</div><div class="form">
         <input type="hidden" id="', $data['id'], '____[widget_type]" value="', $module['type'], '" />';
 
         $module['fields'] = require get_template_directory() . "/Modules/" . $module['type'] . "/admin.php";
         foreach ($module['fields'] as $field) {
           $field_data = array(
             'id' => isset($field->id) ? $data['id'] . '____[' . $field->id . ']' : '',
-            'name' => '',
+            'name' => isset($field->id) ? $field->id : '',
             'value' => isset($field->default) ? $field->default : ''
           );
 

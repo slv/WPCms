@@ -1,0 +1,10 @@
+.wpcms-multilingual-field > div > .wpcms-multilingual-field-switcher {
+  position:absolute;
+  right:20px;
+  padding:0px;
+  text-align:right;
+}
+
+.wpcms-multilingual-field > div > .wpcms-multilingual-field-switcher > .multilingual-switcher {
+  margin-right: 5px;
+}

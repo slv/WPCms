@@ -1,17 +1,4 @@
-jQuery(document).ready(function ($) {
-
-  $(".wpcms-multilingual-field > div").css({
-    height: function () {
-      var height = 0,
-          add = $(this).children().first().outerHeight();
-
-      $(this).find('.multilingual-wrapper').each(function (k, wrap) {
-        height = Math.max($(wrap).outerHeight(), height);
-      });
-
-      return (height + add);
-    }
-  })
+_WPCmsGlobalInit.MultiLanguageField = function ($) {
 
   $(".multilingual-switcher.ord-0").addClass('button-primary');
 
@@ -27,4 +14,6 @@ jQuery(document).ready(function ($) {
     $('.multilingual-switcher.button-primary').removeClass('button-primary');
     $('.multilingual-switcher.lang-' + $(this).text()).addClass('button-primary');
   });
-});
+};
+
+jQuery(document).ready(_WPCmsGlobalInit.MultiLanguageField);

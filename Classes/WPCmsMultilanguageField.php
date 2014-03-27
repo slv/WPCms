@@ -27,6 +27,7 @@ Class WPCmsMultilanguageField {
 
   public function addActionAdminEnqueueScripts ($hook) {
     wp_enqueue_script('wpcms-multilanguage', WPCMS_STYLESHEET_URI . '/WPCms/assets/multilanguage.js', array('jquery'));
+    wp_enqueue_style('wpcms-multilanguage', WPCMS_STYLESHEET_URI . '/WPCms/assets/multilanguage.css');
     $this->field->addActionAdminEnqueueScripts($hook);
   }
 
@@ -42,10 +43,10 @@ Class WPCmsMultilanguageField {
 
     echo '<td style="width:75%">',
       '<div class="wpcms-multilingual-field"><div>',
-        '<div style="text-align:right;padding:3px;">';
+        '<div class="wpcms-multilingual-field-switcher">';
 
     foreach ($this->languages as $k => $lang) {
-      echo '<a class="multilingual-switcher ord-', $k, ' lang-', $lang, ' button-secondary" style="margin-right:5px;">', $lang, '</a>';
+      echo '<a class="multilingual-switcher ord-', $k, ' lang-', $lang, ' button-secondary">', $lang, '</a>';
     }
 
     echo '</div>';
@@ -142,10 +143,10 @@ Class WPCmsMultilanguageField {
 
     echo '<td style="width:75%">',
       '<div class="wpcms-multilingual-field"><div>',
-        '<div style="text-align:right;padding:3px;">';
+        '<div class="wpcms-multilingual-field-switcher">';
 
     foreach ($this->languages as $k => $lang) {
-      echo '<a class="multilingual-switcher ord-', $k, ' lang-', $lang, ' button-secondary" style="margin-right:5px;">', $lang, '</a>';
+      echo '<a class="multilingual-switcher ord-', $k, ' lang-', $lang, ' button-secondary">', $lang, '</a>';
     }
 
     echo '</div>';
@@ -159,7 +160,7 @@ Class WPCmsMultilanguageField {
         'value' => $option[$lang]
       );
 
-      echo '<div class="multilingual-wrapper ord-', $k, ' lang-', $lang, '" style="background:#ffffff;">';
+      echo '<div class="multilingual-wrapper ord-', $k, ' lang-', $lang, '">';
 
       $this->field->renderInnerInput(null, $data);
 
