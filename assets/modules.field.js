@@ -12,15 +12,21 @@ jQuery(document).ready(function ($) {
         var module = $(this),
             order = k+1;
         module.find('input, select, textarea').each(function (k) {
-          var startingId = $(this).attr('id');
+          var startingId = $(this).attr('id'),
+              checked;
 
-          if ($(this).attr('type') === 'radio')
+          if ($(this).attr('type') === 'radio') {
             startingId = module.find('fieldset').first().attr('id');
+            checked = $(this).hasClass('initial-checked');
+          }
 
           if (startingId && startingId.indexOf('____') >= 0) {
             var name = startingId.replace('____', '[' + order + ']');
             $(this).attr('name', name);
           }
+
+          if ($(this).attr('type') === 'radio' && checked)
+            $(this).attr('checked', 'checked');
         });
         module.find('.module-remove').click(function (e) {
           e.preventDefault();
