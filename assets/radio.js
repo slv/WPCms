@@ -7,6 +7,11 @@ _WPCmsGlobalInit.Radio = function ($) {
     if ($(this).data('init')) return;
     $(this).data('init', true);
 
+    var container = $(field).parents('.module');
+
+    if (!container.length)
+      container = $(document.body);
+
     var qs = $(field).attr('data-related'), relations = {};
 
     $(field).find('input').each(function (k, id) {
@@ -17,23 +22,23 @@ _WPCmsGlobalInit.Radio = function ($) {
       var fields = qs.split(',');
 
       $.each(fields, function (k, id) {
-        $('.wpcms_' + id + '-wrapper').hide();
+        container.find('.wpcms_' + id + '-wrapper').hide();
       });
 
       if ($(field).find('input:radio:checked').length)
         $.each(relations[$(field).find('input:radio:checked').val()], function (k, id) {
-          $('.wpcms_' + id + '-wrapper').show();
+          container.find('.wpcms_' + id + '-wrapper').show();
         });
 
       $(field).find('input:radio').change(function (e) {
 
         $.each(fields, function (k, id) {
-          $('.wpcms_' + id + '-wrapper').hide();
+          container.find('.wpcms_' + id + '-wrapper').hide();
         });
 
         if (typeof relations[$(this).val()] != "undefined")
           $.each(relations[$(this).val()], function (k, id) {
-            $('.wpcms_' + id + '-wrapper').show();
+            container.find('.wpcms_' + id + '-wrapper').show();
           });
       });
     }
