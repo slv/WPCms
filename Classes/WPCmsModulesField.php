@@ -67,8 +67,8 @@ Class WPCmsModulesField Extends WPCmsField {
 
         $module = $modules_cache[$module_data['widget_type']];
 
-        if (file_exists(get_template_directory() . "/Modules/" . $module['type'] . "/screenshot.jpg"))
-          $name = '<div class="wpcms-modules-field-preview"><img src="' . WPCMS_STYLESHEET_URI . '/Modules/' . $module['type'] . '/screenshot.jpg" /></div>';
+        if (file_exists(get_template_directory() . "/Modules/" . $module['type'] . "/screenshot.png"))
+          $name = '<div class="wpcms-modules-field-preview"><img src="' . WPCMS_STYLESHEET_URI . '/Modules/' . $module['type'] . '/screenshot.png" /></div>';
         else
           $name = '<span>' . $module['name'] . '</span>';
 
@@ -106,8 +106,8 @@ Class WPCmsModulesField Extends WPCmsField {
 
 
     foreach ($this->modules as $module) {
-      if (file_exists(get_template_directory() . "/Modules/" . $module['type'] . "/screenshot.jpg"))
-        $name = '<div class="wpcms-modules-field-preview"><img src="' . WPCMS_STYLESHEET_URI . '/Modules/' . $module['type'] . '/screenshot.jpg" /></div>';
+      if (file_exists(get_template_directory() . "/Modules/" . $module['type'] . "/screenshot.png"))
+        $name = '<div class="wpcms-modules-field-preview"><img src="' . WPCMS_STYLESHEET_URI . '/Modules/' . $module['type'] . '/screenshot.png" /></div>';
       else
         $name = '<span>' . $module['name'] . '</span>';
 
