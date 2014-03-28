@@ -22,8 +22,8 @@
 
 .postbox .inside .wpcms-multilingual-field-switcher {
   position:absolute;
-  top:0px;
-  right:0px;
+  top:-35px;
+  right:50px;
   padding:0px;
   text-align:right;
 }
@@ -34,6 +34,8 @@
 
 .modules-field .modules-list-droppable > .module .wpcms-multilingual-field-switcher {
   position:relative;
+  top:0px;
+  right:0px;
   margin:10px 15px 0px;
 }
 
