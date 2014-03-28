@@ -2,8 +2,14 @@
 
 Class WPCmsCheckboxField Extends WPCmsField {
 
+  public function renderSettingLabel () {
+    echo '<label for="', $this->id, '" class="col-sm-2 control-label">', __($this->name, WPCmsStatus::getStatus()->getData('textdomain')), '</label>';
+  }
+
   public function renderInnerInput ($post, $data = array()) {
-    echo '<input type="checkbox" name="', $data['name'], '" id="', $data['id'], '" value="on"', ($data['value'] == "on" ? ' checked="checked" ' : ''), ' />';
+    echo '<div class="checkbox"><label><input type="checkbox" name="', $data['name'], '" id="', $data['id'], '" value="on"', ($data['value'] == "on" ? ' checked="checked" ' : ''), ' />',
+      ($this->description ? $this->description : ''),
+    '</label></div>';
   }
 
   public function save ($postID, $suffix = '') {

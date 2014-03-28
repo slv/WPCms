@@ -27,7 +27,7 @@ Class WPCmsRadioField Extends WPCmsField {
     foreach ($this->options as $value => $label) {
       $selected = ($value == $data['value'] ? ' checked="checked" class="initial-checked"' : '');
       $dataRelated = (isset($this->fieldsRelation[$value]) ? ' data-related="' . $this->fieldsRelation[$value] . '"' : '');
-      echo '<p><label><input', $selected, $dataRelated, ' type="radio" name="', $data['name'],'" value="', esc_attr($value), '" /> ', $label,'</label></p>';
+      echo '<div class="radio"><label><input', $selected, $dataRelated, ' type="radio" name="', $data['name'],'" value="', esc_attr($value), '" /> ', $label,'</label></div>';
     }
 
     echo '</fieldset>';

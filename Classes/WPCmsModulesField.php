@@ -39,16 +39,12 @@ Class WPCmsModulesField Extends WPCmsField {
   }
 
   public function renderInput ($post, $data = array()) {
-    echo '<td style="width:100%">';
-
     $data = array(
       'id' => isset($data['id']) ? $data['id'] : $this->id,
       'name' => isset($data['name']) ? $data['name'] : $this->id,
       'value' => isset($data['value']) ? $data['value'] : $this->value($post->ID)
     );
     $this->renderInnerInput($post, $data);
-
-    echo '</td>';
   }
 
   public function renderInnerInput ($post, $data = array())
@@ -58,9 +54,12 @@ Class WPCmsModulesField Extends WPCmsField {
       $modules_cache[$module['type']] = $module;
     }
 
+    echo '<div class="btn btn-success btn-lg btn-block wpcms-modules-field-start-button">Start ', $this->name, '</div>';
     echo '<div class="modules-field" id="', $data['id'], '">';
 
+
     echo '<div class="modules-list-droppable" id="', $data['id'], '_droppable">';
+
 
     if (is_array($data['value'])) {
       foreach ($data['value'] as $order => $module_data) {
@@ -68,7 +67,12 @@ Class WPCmsModulesField Extends WPCmsField {
 
         $module = $modules_cache[$module_data['widget_type']];
 
-        echo '<div class="module"><a>', $module['name'], '</a><div class="module-inside"><h3>', $module['name'], '</h3><div class="module-remove">X</div><div class="form">
+        if (file_exists(get_template_directory() . "/Modules/" . $module['type'] . "/screenshot.jpg"))
+          $name = '<div class="wpcms-modules-field-preview"><img src="' . WPCMS_STYLESHEET_URI . '/Modules/' . $module['type'] . '/screenshot.jpg" /></div>';
+        else
+          $name = '<span>' . $module['name'] . '</span>';
+
+        echo '<div class="module"><div class="module-inside"><h3>', $module['name'], '</h3><div class="form">
           <input type="hidden" id="', $data['id'], '____[widget_type]" value="', $module['type'], '" />';
 
         $module['fields'] = require get_template_directory() . "/Modules/" . $module['type'] . "/admin.php";
@@ -82,7 +86,15 @@ Class WPCmsModulesField Extends WPCmsField {
           $field->render($post, $field_data);
         }
 
-        echo '</div></div></div>';
+
+
+        echo '</div></div>
+          <a>', $name, '</a>
+          <div class="wpcms-modules-field-buttons">
+            <div class="module-toggle btn btn-default btn-xs">edit</div>
+            <div class="module-remove btn btn-danger btn-xs">remove</div>
+          </div>
+        </div>';
 
       }
     }
@@ -90,9 +102,16 @@ Class WPCmsModulesField Extends WPCmsField {
     echo '</div>';
     echo '<hr />';
     echo '<div class="modules-list" id="', $data['id'], '_wrapper">';
+    echo '<div class="wpcms-modules-field-save-button-wrapper"><div class="btn btn-success btn-lg btn-block wpcms-modules-field-save-button">Save Your Template</div></div>';
+
 
     foreach ($this->modules as $module) {
-      echo '<div class="module"><a>', $module['name'], '</a><div class="module-inside"><h3>', $module['name'], '</h3><div class="module-remove">X</div><div class="form">
+      if (file_exists(get_template_directory() . "/Modules/" . $module['type'] . "/screenshot.jpg"))
+        $name = '<div class="wpcms-modules-field-preview"><img src="' . WPCMS_STYLESHEET_URI . '/Modules/' . $module['type'] . '/screenshot.jpg" /></div>';
+      else
+        $name = '<span>' . $module['name'] . '</span>';
+
+      echo '<div class="module"><div class="module-inside"><h3>', $module['name'], '</h3><div class="form">
         <input type="hidden" id="', $data['id'], '____[widget_type]" value="', $module['type'], '" />';
 
         $module['fields'] = require get_template_directory() . "/Modules/" . $module['type'] . "/admin.php";
@@ -107,11 +126,29 @@ Class WPCmsModulesField Extends WPCmsField {
 
         }
 
-      echo '</div></div></div>';
+      echo '</div></div>
+        <a>', $name, '</a>
+        <div class="wpcms-modules-field-buttons">
+          <div class="module-toggle btn btn-default btn-xs">edit</div>
+          <div class="module-remove btn btn-danger btn-xs">remove</div>
+        </div>
+      </div>';
     }
 
     echo '</div>';
     echo '</div>';
 
   }
+
+  public function renderSettingLabel () {
+  }
+
+  public function renderSettingInput () {
+    $this->renderInnerInput(null, array(
+      'id' => $this->id,
+      'name' => $this->id,
+      'value' => $this->settingValue()
+    ));
+  }
+
 }

@@ -13,7 +13,7 @@ Class WPCmsSelectField Extends WPCmsField {
   }
 
   public function renderInnerInput ($post, $data = array()) {
-    echo '<select type="text" name="', $data['name'], '" id="', $data['id'], '">';
+    echo '<select class="form-control" type="text" name="', $data['name'], '" id="', $data['id'], '">';
 
     if ($data['value'] == '' && !isset($this->options[$default]))
       echo '<option value="">', __('Select', WPCmsStatus::getStatus()->getData('textdomain')),'...</option>';

@@ -3,23 +3,18 @@
 Class WPCmsSeparatorField Extends WPCmsField {
 
   public function renderInnerInput ($post, $data = array()) {
-    echo '<h2>' . $this->name . '</h2>';
+    echo '<h3>' . $this->name . '</h3>';
     if ($this->description != '') {
       echo '<p>' . $this->description . '</d>';
     }
   }
 
   public function render ($post, $data = array()) {
-
-    echo '<table class="form-table">',
-      '<tr valign="middle">',
-        '<td colspan="2" style="background:#eeeeee;border-top:1px solid #b0b0b0;">';
+    echo '<div class="wpcms-field ', $this->hyphenizeFromCamelCase(get_class($this)), ' ', $this->id,'-wrapper">';
 
     $this->renderInnerInput(null);
 
-    echo '</td>',
-        '</tr>',
-      '</table>';
+    echo '</div>';
   }
 
 //
@@ -57,18 +52,14 @@ Class WPCmsSeparatorField Extends WPCmsField {
   }
 
   public function willRenderSetting () {
-    echo '<table class="form-table wpcms-field ', $this->hyphenizeFromCamelCase(get_class($this)), '">',
-      '<tr valign="middle">',
-    '<td colspan="2" style="background:#eeeeee;border-top:1px solid #b0b0b0;">';
+    echo '<div class="wpcms-field ', $this->hyphenizeFromCamelCase(get_class($this)), ' ', $this->id,'-wrapper">';
   }
 
   public function renderSettingLabel () {}
   public function renderSettingInput () {}
 
   public function didRenderSetting () {
-    echo '</td>',
-      '</tr>',
-    '</table>';
+    echo '</div>';
   }
 
 };

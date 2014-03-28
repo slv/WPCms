@@ -14,6 +14,8 @@ Class WPCmsRelationField Extends WPCmsField {
     return $this;
   }
 
+  var $input_class = 'col-sm-10';
+
   public function addActionAdminEnqueueScripts ($hook)
   {
     wp_enqueue_script('wpcms-multiselect', WPCMS_STYLESHEET_URI . '/WPCms/assets/multi.select.js', array('jquery'));
@@ -39,12 +41,13 @@ Class WPCmsRelationField Extends WPCmsField {
         'post_type' => $this->postTypeOfRelated != '' ? $this->postTypeOfRelated : $post->post_type));
     }
 
-    echo '<div class="multi-select-field">';
+    echo '<div class="form-inline multi-select-field">';
 
-    echo '<label>', __('Type to Filter', WPCmsStatus::getStatus()->getData('textdomain')), ':</label>',
-      '<input class="multi-select-filter" size="20" />',
-      '<a class="button button-small select-all">', __('Select All', WPCmsStatus::getStatus()->getData('textdomain')), '</a>',
-      '<a class="button button-small select-none">', __('Deselect All', WPCmsStatus::getStatus()->getData('textdomain')), '</a>';
+    echo '<input class="form-control input-sm multi-select-filter" size="20" placeholder="', __('Type to Filter', WPCmsStatus::getStatus()->getData('textdomain')),'" />',
+      ' ',
+      '<a class="btn btn-default btn-sm select-all">', __('Select All', WPCmsStatus::getStatus()->getData('textdomain')), '</a>',
+      ' ',
+      '<a class="btn btn-danger btn-sm select-none">', __('Deselect All', WPCmsStatus::getStatus()->getData('textdomain')), '</a>';
 
     echo '<div class="options-list" id="', $data['id'], '_wrapper" style="width:100%;height:150px;">';
 
@@ -53,8 +56,7 @@ Class WPCmsRelationField Extends WPCmsField {
     }
 
     echo '</div>';
-    echo '<hr />';
-    echo '<label>', __('And Drag Items to Change Order', WPCmsStatus::getStatus()->getData('textdomain')), ':</label>';
+    echo '<p class="multi-select-field-description">', __('And Drag Items to Change Order', WPCmsStatus::getStatus()->getData('textdomain')), ':</p>';
     echo '<div class="options-list-sortable" style="width:100%;min-height:50px;max-height:200px;">';
     echo '</div>';
     echo '<input type="hidden" value="', esc_attr($data['value']), '" class="input" id="', $data['id'], '" name="', $data['name'], '" />';

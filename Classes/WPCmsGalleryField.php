@@ -9,6 +9,17 @@ Class WPCmsGalleryField Extends WPCmsField {
     wp_enqueue_style('wpcms-gallery', WPCMS_STYLESHEET_URI . '/WPCms/assets/gallery.css');
   }
 
+  public function renderSettingInput () {
+
+    echo '<div class="col-sm-9">';
+    $this->renderInnerInput(null, array(
+      'id' => $this->id,
+      'name' => $this->id,
+      'value' => $this->settingValue()
+    ));
+    echo '</div>';
+  }
+
   public function renderInnerInput ($post, $data = array())
   {
     ?>
@@ -21,8 +32,8 @@ Class WPCmsGalleryField Extends WPCmsField {
       <?php endforeach; endif; ?>
     </div>
     <input id="<?php echo $data['id']; ?>" class="gallery-input" type="hidden" name="<?php echo $data['name']; ?>" value="<?php echo esc_attr($data['value']); ?>" />
-    <input type="button" value="<?php _e('Edit Gallery', WPCmsStatus::getStatus()->getData('textdomain')); ?>" class="button button-primary gallery-button" />
-    <input type="button" value="<?php _e('Delete Gallery', WPCmsStatus::getStatus()->getData('textdomain')); ?>" class="button button-secondary gallery-delete"<?php if ($data['value'] == '') echo ' style="display:none;"'; ?> />
+    <input type="button" value="<?php _e('Edit Gallery', WPCmsStatus::getStatus()->getData('textdomain')); ?>" class="btn btn-default btn-xs gallery-button" />
+    <input type="button" value="<?php _e('Delete Gallery', WPCmsStatus::getStatus()->getData('textdomain')); ?>" class="btn btn-danger btn-xs gallery-delete"<?php if ($data['value'] == '') echo ' style="display:none;"'; ?> />
 
     <?php
   }

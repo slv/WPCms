@@ -4,7 +4,39 @@
   padding:0px;
   text-align:right;
 }
+.wpcms-multilingual-field-switcher:before {
+  content: "switch language >";
+}
 
-.wpcms-multilingual-field > div > .wpcms-multilingual-field-switcher > .multilingual-switcher {
-  margin-right: 5px;
+.wpcms-multilingual-field-switcher > .multilingual-switcher {
+  margin-left: 15px;
+}
+
+.wpcms-settings-page .wpcms-multilingual-field-switcher {
+  position:absolute;
+  top:15px;
+  right:20px;
+  padding:0px;
+  text-align:right;
+}
+
+.postbox .inside .wpcms-multilingual-field-switcher {
+  position:absolute;
+  top:0px;
+  right:0px;
+  padding:0px;
+  text-align:right;
+}
+
+.postbox .inside .wpcms-multilingual-field-switcher > .multilingual-switcher {
+  padding: 1px 10px;
+}
+
+.modules-field .modules-list-droppable > .module .wpcms-multilingual-field-switcher {
+  position:relative;
+  margin:10px 15px 0px;
+}
+
+.modules-field .modules-list-droppable > .module .wpcms-multilingual-field-switcher > .multilingual-switcher {
+  margin-left: 3px;
 }

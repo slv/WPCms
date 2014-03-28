@@ -1,0 +1,71 @@
+body {
+  background:transparent;
+}
+
+.wpcms-settings-page {
+  position:relative;
+  max-width:980px;
+  padding:15px;
+  background:#ffffff;
+}
+
+input[type="text"].form-control:focus,
+textarea.form-control:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+label.control-label {
+  font-weight:normal;
+}
+
+.wpcms-separator-field {
+  padding:0px 15px;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  box-shadow: none;
+}
+
+.wpcms-settings-page .wpcms-separator-field {
+  margin-top:100px;
+  margin-bottom:20px;
+}
+
+.wpcms-separator-field > h3,
+.wpcms-separator-field > p {
+  border-bottom:0px;
+  padding:8px 12px;
+}
+
+.wpcms-colorpicker {
+  position:relative;
+  top:5px;
+}
+
+.wpcms-colorpicker .wp-color-result {
+  height:22px;
+}
+
+.wpcms-colorpicker .wp-color-result:after {
+  line-height:20px;
+}
+
+#side-sortables .wpcms-field .col-sm-1,
+#side-sortables .wpcms-field .col-sm-2,
+#side-sortables .wpcms-field .col-sm-3,
+#side-sortables .wpcms-field .col-sm-4,
+#side-sortables .wpcms-field .col-sm-5,
+#side-sortables .wpcms-field .col-sm-6,
+#side-sortables .wpcms-field .col-sm-7,
+#side-sortables .wpcms-field .col-sm-8,
+#side-sortables .wpcms-field .col-sm-9,
+#side-sortables .wpcms-field .col-sm-10,
+#side-sortables .wpcms-field .col-sm-11,
+#side-sortables .wpcms-field .col-sm-12 {
+  text-align:left;
+  width:100%;
+}

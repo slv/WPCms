@@ -58,7 +58,7 @@ Class WPCmsGoogleFontsField Extends WPCmsField {
     // foreach ($fonts['items'] as $key => $value) { foreach ($value['variants'] as $variant) { echo $value['family'] . ':' . $variant . PHP_EOL; }}
 
     echo '<div class="field-wrapper">';
-    echo '<select type="text" name="', $data['name'], '" id="', $data['id'], '">';
+    echo '<select class="form-control" type="text" name="', $data['name'], '" id="', $data['id'], '">';
 
     if ($data['value'] == '' && !isset($this->options[$this->default]))
       echo '<option value="">', __('Select', WPCmsStatus::getStatus()->getData('textdomain')),'...</option>';
@@ -85,7 +85,7 @@ Class WPCmsGoogleFontsField Extends WPCmsField {
 
     echo '</select>';
 
-    echo '<p style="display:inline;margin:0px 10px;" class="demo" data-fontsize="', $this->fontSize, '">', ($data['value'] != '' ? $data['value'] : 'Font: ' . __('Default', WPCmsStatus::getStatus()->getData('textdomain'))), '</p>';
+    echo '<p class="form-control-static demo" data-fontsize="', $this->fontSize, '">', ($data['value'] != '' ? $data['value'] : 'Font: ' . __('Default', WPCmsStatus::getStatus()->getData('textdomain'))), '</p>';
     echo '</div>';
   }
 }

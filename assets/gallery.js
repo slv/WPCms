@@ -30,7 +30,7 @@ _WPCmsGlobalInit.Gallery = function ($) {
                 var val = '';
                 gallery.html('');
                 selection.map(function(attachment) {
-                    if (!attachment.id) return;
+                    if (!attachment.id || !attachment.attributes || !attachment.attributes.sizes) return;
                     var thumbnail = attachment.attributes.sizes.full;
                     if (typeof attachment.attributes.sizes.thumbnail !== "undefined") thumbnail = attachment.attributes.sizes.thumbnail;
                     if (val != '') val += ',';

@@ -4,6 +4,13 @@ jQuery(document).ready(function ($) {
 
   $('.wpcms-modules-field').each(function (k, field) {
 
+    $(field).find('.wpcms-modules-field-start-button').click(function () {
+      $(field).addClass('wpcms-modules-field-active');
+    });
+    $(field).find('.wpcms-modules-field-save-button').click(function () {
+      $(field).removeClass('wpcms-modules-field-active');
+    });
+
     if ($(this).data('init')) return;
     $(this).data('init', true);
 
@@ -28,9 +35,13 @@ jQuery(document).ready(function ($) {
           if ($(this).attr('type') === 'radio' && checked)
             $(this).attr('checked', 'checked');
         });
-        module.find('.module-remove').click(function (e) {
+        module.find('.module-remove').unbind('click').click(function (e) {
           e.preventDefault();
           $(module).remove();
+        });
+        module.find('.module-toggle').unbind('click').click(function (e) {
+          e.preventDefault();
+          module.find('.module-inside').slideToggle();
         });
       });
 
@@ -41,10 +52,8 @@ jQuery(document).ready(function ($) {
 
     $(field).find('.modules-list-droppable').sortable({
       start: function (event, ui) {
-        $(ui.item).children('.module-inside').hide();
       },
       stop: function (event, ui) {
-        $(ui.item).children('.module-inside').show();
       },
       update: function (event, ui) {
         setFields($(this));
@@ -58,7 +67,7 @@ jQuery(document).ready(function ($) {
     $(field).find('.modules-list > .module').draggable({
       containment: $(field),
       connectToSortable: $(field).find('.modules-list-droppable'),
-      // appendTo: $(field).find('.modules-list-droppable'),
+      appendTo: $(field),
       helper: "clone"
     });
 

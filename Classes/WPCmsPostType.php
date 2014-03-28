@@ -200,6 +200,9 @@ Class WPCmsPostType {
       wp_register_script('wpcms-custompost', WPCMS_STYLESHEET_URI . '/WPCms/assets/custom.post.js', 'jquery');
       wp_enqueue_script('wpcms-custompost');
       wp_dequeue_script('autosave');
+      wp_enqueue_style('bootstrap', WPCMS_STYLESHEET_URI . '/WPCms/assets/bootstrap/bootstrap.min.css');
+      wp_enqueue_style('bootstrap-theme', WPCMS_STYLESHEET_URI . '/WPCms/assets/bootstrap/bootstrap-theme.min.css');
+      wp_enqueue_style('wpcms-field', WPCMS_STYLESHEET_URI . '/WPCms/assets/field.css');
     }
   }
 

@@ -1,26 +1,8 @@
-.multi-select-field {
-  padding:8px;
-  border:1px solid #a0a0a0;
-  border-radius:7px;
-  background:#ededed; }
+.multi-select-field { }
 
-.multi-select-field .multi-select-tools {
-  padding:5px;
-  font-weight:bold;
-  border-radius:7px 7px 0px 0px; }
-
-.multi-select-field label {
-  padding:0px 5px;
-  line-height:20px;
-  font-size:13px;
-  color:#303030; }
-
-.multi-select-field .multi-select-filter {
-  margin:0px 5px;
-  padding:0px 5px;
-  line-height:20px;
-  font-size:13px;
-  color:#303030; }
+.multi-select-field-description {
+  margin:5px 0px;
+}
 
 .multi-select-field .options-list-sortable,
 .multi-select-field .options-list {
@@ -41,13 +23,12 @@
   display:block;
   margin:4px 8px;
   padding:2px 5px;
-  height:18px;
-  line-height:18px;
-  font-size:13px;
-  color:#303030;
-  border:1px solid #585858;
+  height:26px;
+  line-height:22px;
+  text-overflow:ellipsis;
+  white-space:nowrap;
   border-radius:4px;
-  background:#dedede;
+  background:#eee;
   text-decoration:none; }
 
 .multi-select-field .options-list-sortable > a > span,
@@ -55,14 +36,13 @@
   position:absolute;
   right:0px;
   top:0px;
+  height:100%;
   padding:0px 5px;
-  line-height:11px;
-  font-size:10px;
+  line-height:12px;
+  font-size:11px;
   text-align:right;
-  border-radius:4px;
-  color:#ffffff;
-  background:#000000;
-  background:rgba(0, 0, 0, 0.6); }
+  background:#ffffff;
+  background:rgba(255, 255, 255, 0.5); }
 
 
 .multi-select-field .options-list-sortable > a:hover,

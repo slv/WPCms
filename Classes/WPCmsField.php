@@ -4,6 +4,9 @@ Abstract Class WPCmsField {
 
   abstract protected function renderInnerInput ($post, $data = array());
 
+  var $settings_input_class = 'col-sm-9 col-lg-4';
+  var $posttype_input_class = 'col-sm-9';
+
   function __construct ($config) {
 
     $this->id = WPCmsStatus::getStatus()->getData('pre') . $this->normalize($config['id']);
@@ -30,21 +33,16 @@ Abstract Class WPCmsField {
   */
 
   public function willRender ($post) {
-    echo '<table class="form-table wpcms-field ', $this->hyphenizeFromCamelCase(get_class($this)), ' ', $this->id,'-wrapper">',
-      '<tr style="border-top:1px solid #eeeeee;">';
+    echo '<div class="form-horizontal"><div class="form-group wpcms-field ', $this->hyphenizeFromCamelCase(get_class($this)), ' ', $this->id,'-wrapper">';
   }
 
   public function renderLabel ($post) {
-    echo '<th style="width:25%">',
-      '<label for="', $this->id, '">',
-        '<strong>', __($this->name, WPCmsStatus::getStatus()->getData('textdomain')), '</strong>',
-        '<span style=" display:block; color:#999; margin:5px 0 0 0; line-height: 18px;">', __($this->description, WPCmsStatus::getStatus()->getData('textdomain')), '</span>',
-      '</label>',
-      '</th>';
+    echo '<label for="', $this->id, '" class="col-sm-2 control-label">', __($this->name, WPCmsStatus::getStatus()->getData('textdomain')), '</label>';
+        // '<span style=" display:block; color:#999; margin:5px 0 0 0; line-height: 18px;">', __($this->description, WPCmsStatus::getStatus()->getData('textdomain')), '</span>',
   }
 
   public function renderInput ($post, $data = array()) {
-    echo '<td style="width:75%">';
+    echo '<div class="', $this->posttype_input_class, '">';
 
     $data = array(
       'id' => isset($data['id']) ? $data['id'] : $this->id,
@@ -53,12 +51,11 @@ Abstract Class WPCmsField {
     );
     $this->renderInnerInput($post, $data);
 
-    echo '</td>';
+    echo '</div>';
   }
 
   public function didRender ($post) {
-    echo '</tr>',
-      '</table>';
+    echo '</div></div>';
   }
 
   public function render ($post, $data = array()) {
@@ -247,34 +244,30 @@ Abstract Class WPCmsField {
   }
 
   public function willRenderSetting () {
-    echo '<table class="form-table wpcms-field ', $this->hyphenizeFromCamelCase(get_class($this)), ' ', $this->id,'-wrapper">',
-      '<tr valign="top">';
+    echo '<div class="form-group wpcms-field ', $this->hyphenizeFromCamelCase(get_class($this)), ' ', $this->id,'-wrapper">';
   }
 
   public function renderSettingLabel () {
-    echo '<th scope="row">',
-      '<label for="', $this->id, '">',
-        '<strong>', __($this->name, WPCmsStatus::getStatus()->getData('textdomain')), '</strong>',
-        '<span style=" display:block; color:#999; margin:5px 0 0 0; line-height: 18px;">', __($this->description, WPCmsStatus::getStatus()->getData('textdomain')), '</span>',
-      '</label>',
-    '</th>';
+    echo '<label for="', $this->id, '" class="col-sm-2 control-label">', __($this->name, WPCmsStatus::getStatus()->getData('textdomain')),
+      ($this->description ? '<br /><small>' . __($this->description, WPCmsStatus::getStatus()->getData('textdomain')) . '</small>' : ''),
+      '</label>';
+        // '<span style=" display:block; color:#999; margin:5px 0 0 0; line-height: 18px;">', __($this->description, WPCmsStatus::getStatus()->getData('textdomain')), '</span>',
   }
 
   public function renderSettingInput () {
 
-    echo '<td width="75%">';
+    echo '<div class="', $this->settings_input_class, '">';
     $this->renderInnerInput(null, array(
       'id' => $this->id,
       'name' => $this->id,
       'value' => $this->settingValue()
     ));
-    echo '</td>';
+    echo '</div>';
   }
 
 
   public function didRenderSetting () {
-    echo '</tr>',
-      '</table>';
+    echo '</div>';
   }
 
 };

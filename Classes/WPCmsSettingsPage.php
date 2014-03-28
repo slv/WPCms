@@ -45,6 +45,9 @@ Class WPCmsSettingsPage {
 
       wp_register_script('wpcms-custompost', WPCMS_STYLESHEET_URI . '/WPCms/assets/custom.post.js', 'jquery');
       wp_enqueue_script('wpcms-custompost');
+      wp_enqueue_style('bootstrap', WPCMS_STYLESHEET_URI . '/WPCms/assets/bootstrap/bootstrap.min.css');
+      wp_enqueue_style('bootstrap-theme', WPCMS_STYLESHEET_URI . '/WPCms/assets/bootstrap/bootstrap-theme.min.css');
+      wp_enqueue_style('wpcms-field', WPCMS_STYLESHEET_URI . '/WPCms/assets/field.css');
 
       foreach ($this->fields as $k => $field) {
 
@@ -70,10 +73,8 @@ Class WPCmsSettingsPage {
   }
 
   public function settingsPage () {
-    echo '<form method="post" action="options.php" enctype="multipart/form-data">',
-      '<div class="wrap">',
-        '<h1>' . $this->title . '</h1>',
-          '<div class="postbox">';
+    echo '<form class="form-horizontal wpcms-settings-page" method="post" action="options.php" enctype="multipart/form-data">',
+        '<h3>' . $this->title . '</h3>';
 
       settings_fields($this->options_group);
       do_settings_fields($this->options_group, 'options-general.php');
@@ -83,11 +84,9 @@ Class WPCmsSettingsPage {
         $field->renderSetting();
       }
 
-      echo '</div>',
+      echo '<div class="form-group">',
+        '<div class="col-sm-9"><input type="submit" class="btn btn-primary" value="' . __('Save Changes') . '" /></div>',
         '</div>',
-        '<p class="submit">',
-          '<input type="submit" class="button-primary" value="' . __('Save Changes') . '" />',
-        '</p>',
       '</form>';
   }
 }

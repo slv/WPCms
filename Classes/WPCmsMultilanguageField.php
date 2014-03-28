@@ -21,6 +21,9 @@ Class WPCmsMultilanguageField {
     return $this;
   }
 
+  var $settings_input_class = 'col-sm-9 col-lg-4';
+  var $posttype_input_class = 'col-sm-9';
+
   public function normalize ($str) {
     return preg_replace(array("/(\s+)/", "/([^a-zA-Z0-9_]*)/", "/(_+)/"), array("_", "", "_"), $str);
   }
@@ -32,7 +35,6 @@ Class WPCmsMultilanguageField {
   }
 
   public function render ($post, $data = array()) {
-
     if (isset($data['value']) && is_array($data['value']))
       $meta = $data['value'];
     else
@@ -41,12 +43,11 @@ Class WPCmsMultilanguageField {
     $this->field->willRender($post);
     $this->field->renderLabel($post);
 
-    echo '<td style="width:75%">',
-      '<div class="wpcms-multilingual-field"><div>',
+    echo '<div class="wpcms-multilingual-field ', $this->posttype_input_class, '"><div>',
         '<div class="wpcms-multilingual-field-switcher">';
 
     foreach ($this->languages as $k => $lang) {
-      echo '<a class="multilingual-switcher ord-', $k, ' lang-', $lang, ' button-secondary">', $lang, '</a>';
+      echo '<a class="multilingual-switcher ord-', $k, ' lang-', $lang, ' btn btn-xs btn-default">', $lang, '</a>';
     }
 
     echo '</div>';
@@ -59,7 +60,6 @@ Class WPCmsMultilanguageField {
         'name' => $this->field->id . '[' . $lang . ']',
         'value' => $meta[$lang]
       );
-
       if (isset($data['id']))
         $field_data['id'] = str_replace("[" . $data['name'] . "]", "[" . $data['name'] . "][" . $lang . "]", $data['id']);
 
@@ -70,7 +70,7 @@ Class WPCmsMultilanguageField {
       echo '</div>';
     }
 
-    echo '</td>';
+    echo '</div></div>';
 
     $this->field->didRender($post);
   }
@@ -141,12 +141,11 @@ Class WPCmsMultilanguageField {
     $this->field->willRenderSetting();
     $this->field->renderSettingLabel();
 
-    echo '<td style="width:75%">',
-      '<div class="wpcms-multilingual-field"><div>',
+    echo '<div class="wpcms-multilingual-field ', $this->settings_input_class, '"><div>',
         '<div class="wpcms-multilingual-field-switcher">';
 
     foreach ($this->languages as $k => $lang) {
-      echo '<a class="multilingual-switcher ord-', $k, ' lang-', $lang, ' button-secondary">', $lang, '</a>';
+      echo '<a class="multilingual-switcher ord-', $k, ' lang-', $lang, ' btn btn-xs btn-default">', $lang, '</a>';
     }
 
     echo '</div>';
@@ -167,7 +166,7 @@ Class WPCmsMultilanguageField {
       echo '</div>';
     }
 
-    echo '</td>';
+    echo '</div></div>';
 
     $this->field->didRenderSetting();
   }

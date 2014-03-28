@@ -42,7 +42,7 @@ Class WPCmsDatePicker Extends WPCmsField {
     } ?>
     <div class="jquery-ui-datepicker">
       <input type="hidden" name="<?php echo $data['name']?>" id="hidden-<?php echo $data['id'] ?>" value="<?php echo esc_attr($data['value']) ?>">
-      <input style="cursor:pointer" type="text" name="pretty-<?php echo $data['name'] ?>" id="<?php echo $data['id'] ?>" size="30" autocomplete="off" readonly>
+      <input class="form-control" type="text" name="pretty-<?php echo $data['name'] ?>" id="<?php echo $data['id'] ?>" size="30" autocomplete="off">
       <div></div>
       <script type="application/javascript">
         jQuery(document).ready(function ($) {
