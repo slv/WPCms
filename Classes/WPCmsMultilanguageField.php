@@ -21,7 +21,7 @@ Class WPCmsMultilanguageField {
     return $this;
   }
 
-  var $settings_input_class = 'col-sm-9 col-lg-4';
+  var $settings_input_class = 'col-sm-9';
   var $posttype_input_class = 'col-sm-9';
 
   public function normalize ($str) {

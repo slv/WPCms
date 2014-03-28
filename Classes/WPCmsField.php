@@ -4,7 +4,7 @@ Abstract Class WPCmsField {
 
   abstract protected function renderInnerInput ($post, $data = array());
 
-  var $settings_input_class = 'col-sm-9 col-lg-4';
+  var $settings_input_class = 'col-sm-9';
   var $posttype_input_class = 'col-sm-9';
 
   function __construct ($config) {
