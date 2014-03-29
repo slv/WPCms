@@ -54,7 +54,7 @@ Class WPCmsModulesField Extends WPCmsField {
       $modules_cache[$module['type']] = $module;
     }
 
-    echo '<div class="btn btn-success btn-lg btn-block wpcms-modules-field-start-button">Start ', $this->name, '</div>';
+    echo '<div class="btn btn-success btn-lg btn-block wpcms-modules-field-start-button">Open ', $this->name, '</div>';
     echo '<div class="modules-field" id="', $data['id'], '">';
 
 
@@ -72,7 +72,9 @@ Class WPCmsModulesField Extends WPCmsField {
         else
           $name = '<span>' . $module['name'] . '</span>';
 
-        echo '<div class="module"><div class="module-inside"><h3>', $module['name'], '</h3><div class="form">
+        echo '<div class="module">
+          <a>', $name, '</a>
+          <div class="module-inside"><h3>', $module['name'], '</h3><div class="form">
           <input type="hidden" id="', $data['id'], '____[widget_type]" value="', $module['type'], '" />';
 
         $module['fields'] = require get_template_directory() . "/Modules/" . $module['type'] . "/admin.php";
@@ -89,7 +91,6 @@ Class WPCmsModulesField Extends WPCmsField {
 
 
         echo '</div></div>
-          <a>', $name, '</a>
           <div class="wpcms-modules-field-buttons">
             <div class="module-toggle btn btn-default btn-xs">edit</div>
             <div class="module-remove btn btn-danger btn-xs">remove</div>
@@ -102,7 +103,7 @@ Class WPCmsModulesField Extends WPCmsField {
     echo '</div>';
     echo '<hr />';
     echo '<div class="modules-list" id="', $data['id'], '_wrapper">';
-    echo '<div class="wpcms-modules-field-save-button-wrapper"><div class="btn btn-success btn-lg btn-block wpcms-modules-field-save-button">Save Your Template</div></div>';
+    echo '<div class="wpcms-modules-field-save-button-wrapper"><div class="btn btn-danger btn-sm btn-block wpcms-modules-field-close-button">Close  ', $this->name, '</div></div>';
 
 
     foreach ($this->modules as $module) {

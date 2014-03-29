@@ -20,7 +20,10 @@
   display: none;
 }
 
-
+.form-group.wpcms-modules-field {
+  margin-left:5px;
+  margin-right:5px;
+}
 
 .modules-field {
   display:none;
@@ -38,7 +41,16 @@
   width:100%; }
 
 .modules-field .modules-list .wpcms-modules-field-save-button-wrapper {
-  padding:20px;
+  padding:10px;
+}
+
+.modules-field .modules-list .wpcms-modules-field-save-button-wrapper:after {
+  content: 'Modules:';
+  display:block;
+  margin-top:10px;
+  line-height:20px;
+  border-top:1px solid #ddd;
+
 }
 
 .modules-field .modules-list > .module {
@@ -78,17 +90,37 @@
 .module > a {
   position:relative;
   display:block;
-  width:100%; }
+  cursor:move;
+  width:100%;
+  transition:all 0.3s ease;
+  -moz-transition:all 0.3s ease;
+  -webkit-transition:all 0.3s ease; }
 
 .module > a > span {
   position:relative;
   display:block;
   margin:5px 10px;
-  padding:5px;
-  border-radius:6px;
-  line-height:28px;
-  font-size:1.4em;
-  background:#dedede; }
+  text-align: center;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  background-image: -webkit-linear-gradient(top, #ffffff 0%, #e0e0e0 100%);
+  background-image: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  background-repeat: repeat-x;
+  border-color: #dbdbdb;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.module > a:hover {
+  text-decoration:none;
+}
 
 .wpcms-modules-field-preview, .wpcms-modules-field-preview > img {
   display:block;
@@ -126,12 +158,20 @@
   background: #f7f6f5; }
 
 .modules-field .modules-list-droppable > .module {
+  display:block;
   position:relative;
   overflow:hidden;
-  top: 0px; }
+  top: 0px;
+  transition:all 0.3s ease;
+  -moz-transition:all 0.3s ease;
+  -webkit-transition:all 0.3s ease;
+}
 
-.modules-field .modules-list-droppable > .module {
-  display:block;
+.modules-field .modules-list-droppable > .module > a > span {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
 }
 
 .modules-field .modules-list-droppable > .module > .module-inside {
@@ -139,6 +179,25 @@
   overflow:hidden;
   width:100%;
   background:#ffffff;
+  border-radius:6px;
+  box-shadow:0px 0px 1px #000;
+  -webkit-box-shadow:0px 0px 1px #000;
+}
+
+.modules-field .modules-list-droppable > .module > .module-inside > h3 {
+  border-bottom:0px;
+}
+
+.modules-field .modules-list-droppable > .module.module-open {
+  margin:50px;
+}
+
+.modules-field .modules-list-droppable > .module.module-open > a {
+  height:0px;
+}
+
+.modules-field .modules-list-droppable > .module.module-open > .module-inside {
+  display:block;
 }
 
 .modules-field .modules-list-droppable > .module > .module-inside .form {
@@ -150,8 +209,8 @@
   z-index:5;
   right:0px;
   top:0px;
+  height:0px;
   margin:10px 15px;
-  width:200px;
   text-align:right;
 }
 

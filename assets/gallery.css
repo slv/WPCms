@@ -4,9 +4,9 @@
   margin-bottom: 10px;
   width: 100%;
   min-height: 100px;
-  border: 1px solid #111;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  background:#ddd;
+  background:#fff;
 }
 
 .gallery-sort-item {

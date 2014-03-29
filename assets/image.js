@@ -7,11 +7,11 @@ _WPCmsGlobalInit.ImageField = function ($) {
         if ($(this).data('init')) return;
         $(this).data('init', true);
 
-        var field = $(this).find('.upload-image-input').first();
-        var gallery = $(this).find('.image-wrapper').first();
-        var galleryDelete = $(this).find('.upload-image-delete').first();
+        var field = $(this).find('.image-input').first();
+        var imagePro = $(this).find('.image-wrapper').first();
+        var imageProDelete = $(this).find('.image-delete').first();
 
-        $(this).find('* .upload-image-button').click(function(e) {
+        $(this).find('* .image-button').click(function(e) {
             e.preventDefault();
             if (mojo_media_frame) {
                 mojo_media_frame.open();
@@ -28,17 +28,17 @@ _WPCmsGlobalInit.ImageField = function ($) {
             mojo_media_frame.on('select', function () {
                 var selection = mojo_media_frame.state().get('selection');
                 var val = '';
-                gallery.html('');
+                imagePro.html('');
                 selection.map(function(attachment) {
                     if (!attachment.id) return;
                     var thumbnail = attachment.attributes.sizes.full;
                     if (typeof attachment.attributes.sizes.thumbnail !== "undefined") thumbnail = attachment.attributes.sizes.thumbnail;
                     if (val != '') val += ',';
                     val += attachment.id;
-                    $('<img src="' + thumbnail.url + '" />').appendTo(gallery);
+                    $('<div class="image-sort-item" id="image-sort-'+attachment.id+'"><img src="' + thumbnail.url + '" /></div>').appendTo(imagePro);
                 });
                 field.val(val);
-                galleryDelete.show();
+                imageProDelete.show();
             });
             mojo_media_frame.on('open', function () {
                 var selection = mojo_media_frame.state().get('selection');
@@ -53,14 +53,16 @@ _WPCmsGlobalInit.ImageField = function ($) {
             mojo_media_frame.open();
         });
 
-        $(gall).find('* .upload-image-delete').live('click', function() {
+        $(gall).find('* .image-delete').live('click', function() {
             $(this).hide();
             field.val('');
-            gallery.html('');
+            imagePro.html('');
             return false;
         });
     });
 };
 
 jQuery(document).ready(_WPCmsGlobalInit.ImageField);
+
+
 

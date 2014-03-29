@@ -1,4 +1,4 @@
-.image-pro-wrapper {
+.image-wrapper {
   position: relative;
   overflow: hidden;
   display:block;
@@ -8,15 +8,15 @@
   border-radius: 4px;
 }
 
-.image-pro-wrapper:empty {
+.image-wrapper:empty {
   background:#eee;
   width:50px;
 }
 
-.image-pro-sort-item {
+.image-sort-item {
   display:block;
   margin:0px;
   cursor: pointer; }
 
-.image-pro-sort-item img {
+.image-sort-item img {
   display: block; }

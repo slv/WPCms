@@ -6,9 +6,11 @@ jQuery(document).ready(function ($) {
 
     $(field).find('.wpcms-modules-field-start-button').click(function () {
       $(field).addClass('wpcms-modules-field-active');
+      $("#publish").appendTo($(field).find('.wpcms-modules-field-save-button-wrapper')).attr('class', 'btn btn-success btn-lg btn-block');
     });
-    $(field).find('.wpcms-modules-field-save-button').click(function () {
+    $(field).find('.wpcms-modules-field-close-button').click(function () {
       $(field).removeClass('wpcms-modules-field-active');
+      $("#publish").appendTo($('#publishing-action')).attr('class', 'button button-primary button-large');
     });
 
     if ($(this).data('init')) return;
@@ -41,7 +43,7 @@ jQuery(document).ready(function ($) {
         });
         module.find('.module-toggle').unbind('click').click(function (e) {
           e.preventDefault();
-          module.find('.module-inside').slideToggle();
+          module.toggleClass('module-open');
         });
       });
 

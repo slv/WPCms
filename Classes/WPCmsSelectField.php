@@ -12,6 +12,9 @@ Class WPCmsSelectField Extends WPCmsField {
     return $this;
   }
 
+  var $settings_input_class = 'col-sm-4';
+  var $posttype_input_class = 'col-sm-4';
+
   public function renderInnerInput ($post, $data = array()) {
     echo '<select class="form-control" type="text" name="', $data['name'], '" id="', $data['id'], '">';
 
