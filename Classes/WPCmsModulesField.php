@@ -103,7 +103,10 @@ Class WPCmsModulesField Extends WPCmsField {
     echo '</div>';
     echo '<hr />';
     echo '<div class="modules-list" id="', $data['id'], '_wrapper">';
-    echo '<div class="wpcms-modules-field-save-button-wrapper"><div class="btn btn-danger btn-sm btn-block wpcms-modules-field-close-button">Close  ', $this->name, '</div></div>';
+    echo '<div class="wpcms-modules-field-save-button-wrapper">
+      <div class="btn btn-danger btn-sm btn-block wpcms-modules-field-close-button">Close  ', $this->name, '</div>
+      <div class="btn btn-info btn-sm btn-block wpcms-modules-field-toggle-button">Toggle All Modules</div>
+    </div>';
 
 
     foreach ($this->modules as $module) {

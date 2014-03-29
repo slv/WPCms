@@ -45,7 +45,7 @@
 }
 
 .modules-field .modules-list .wpcms-modules-field-save-button-wrapper:after {
-  content: 'Modules:';
+  content: 'Available Modules:';
   display:block;
   margin-top:10px;
   line-height:20px;

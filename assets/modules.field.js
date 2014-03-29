@@ -12,6 +12,10 @@ jQuery(document).ready(function ($) {
       $(field).removeClass('wpcms-modules-field-active');
       $("#publish").appendTo($('#publishing-action')).attr('class', 'button button-primary button-large');
     });
+    $(field).find('.wpcms-modules-field-toggle-button').click(function () {
+      var open = $(field).find('.modules-list-droppable .module').first() && $(field).find('.modules-list-droppable .module').first().hasClass('module-open');
+      $(field).find('.modules-list-droppable .module')[open ? 'removeClass' : 'addClass']('module-open');
+    });
 
     if ($(this).data('init')) return;
     $(this).data('init', true);
