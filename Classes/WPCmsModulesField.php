@@ -7,6 +7,7 @@ Class WPCmsModulesField Extends WPCmsField {
     $this->id = WPCmsStatus::getStatus()->getData('pre') . $this->normalize($config['id']);
     $this->name = isset($config['name']) ? $config['name'] : '';
     $this->description = isset($config['description']) ? $config['description'] : '';
+    $this->background = isset($config['background']) ? $config['background'] : '';
     $this->default = isset($config['default']) ? $config['default'] : '';
     $this->modules = isset($config['modules']) ? $config['modules'] : array();
 
@@ -58,7 +59,7 @@ Class WPCmsModulesField Extends WPCmsField {
     echo '<div class="modules-field" id="', $data['id'], '">';
 
 
-    echo '<div class="modules-list-droppable" id="', $data['id'], '_droppable">';
+    echo '<div class="modules-list-droppable" id="', $data['id'], '_droppable"', ($this->background ? ' style="background:' . $this->background . ';"' : ''), '>';
 
 
     if (is_array($data['value'])) {
@@ -102,7 +103,7 @@ Class WPCmsModulesField Extends WPCmsField {
 
     echo '</div>';
     echo '<hr />';
-    echo '<div class="modules-list" id="', $data['id'], '_wrapper">';
+    echo '<div class="modules-list" id="', $data['id'], '_wrapper"', ($this->background ? ' style="background:' . $this->background . ';"' : ''), '>';
     echo '<div class="wpcms-modules-field-save-button-wrapper">
       <div class="btn btn-danger btn-sm btn-block wpcms-modules-field-close-button">Close  ', $this->name, '</div>
       <div class="btn btn-info btn-sm btn-block wpcms-modules-field-toggle-button">Toggle All Modules</div>

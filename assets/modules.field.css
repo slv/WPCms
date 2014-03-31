@@ -42,6 +42,8 @@
 
 .modules-field .modules-list .wpcms-modules-field-save-button-wrapper {
   padding:10px;
+  border-radius:6px;
+  background:#ffffff;
 }
 
 .modules-field .modules-list .wpcms-modules-field-save-button-wrapper:after {
@@ -162,9 +164,9 @@
   position:relative;
   overflow:hidden;
   top: 0px;
-  transition:all 0.3s ease;
-  -moz-transition:all 0.3s ease;
-  -webkit-transition:all 0.3s ease;
+  transition:margin 0.4s ease, background 0.4s ease;
+  -moz-transition:margin 0.4s ease, background 0.4s ease;
+  -webkit-transition:margin 0.4s ease, background 0.4s ease;
 }
 
 .modules-field .modules-list-droppable > .module > a > span {
