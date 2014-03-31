@@ -35,8 +35,12 @@ function wpcms_get_language_url ($url, $lang) {
 // Options Retriever
 
 function _o($label, $default = '') {
+  $value = get_option(WPCmsStatus::getStatus()->getData('pre') . $label, $default);
 
-  return get_option(WPCmsStatus::getStatus()->getData('pre') . $label, $default);
+  if (!$value)
+    return $default;
+
+  return $value;
 }
 
 function _l($value, $lang = false) {

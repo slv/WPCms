@@ -60,8 +60,6 @@ jQuery(document).ready(function ($) {
       start: function (event, ui) {
       },
       stop: function (event, ui) {
-        console.log(event)
-        $(ui.item).addClass('module-open');
       },
       update: function (event, ui) {
         setFields($(this));
