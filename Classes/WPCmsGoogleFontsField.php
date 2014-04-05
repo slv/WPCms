@@ -21,7 +21,8 @@ Class WPCmsGoogleFontsField Extends WPCmsField {
       if (in_array($font, $elements)) continue;
 
       $elements[] = $font;
-      $f = array_shift(explode(':', $font));
+      $font_exploded = explode(':', $font);
+      $f = array_shift($font_exploded);
 
       if (isset($families[$f])) $families[$f] .= ',' . array_pop(explode(':', $font));
       else $families[$f] = $font;
