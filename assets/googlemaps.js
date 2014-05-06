@@ -2,7 +2,7 @@ if (typeof _WPCmsGlobalInit == "undefined") _WPCmsGlobalInit = {};
 
 _WPCmsGlobalInit.GoogleMaps = function ($) {
 
-    $('.wpcms-googlemap-field').each(function (k, cont) {
+    $('.wpcms-google-map-field').each(function (k, cont) {
       var fieldInput = $(cont).find('.wpcms-map-input').first();
       var fieldID = fieldInput.attr('id');
       var mapOptions = {
