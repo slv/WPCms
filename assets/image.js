@@ -1,8 +1,8 @@
-if (typeof _WPCmsGlobalInit == "undefined") _WPCmsGlobalInit = {};
+if (typeof _WPCmsGlobalInit === "undefined") _WPCmsGlobalInit = {};
 
 _WPCmsGlobalInit.ImageField = function ($) {
 
-    $('.wpcms-image-field').each(function (k, gall) {
+    $('.wpcms-image-field, .wpcms-image-pro-field').each(function (k, gall) {
 
         if ($(this).data('init')) return;
         $(this).data('init', true);
@@ -33,7 +33,7 @@ _WPCmsGlobalInit.ImageField = function ($) {
                     if (!attachment.id) return;
                     var thumbnail = attachment.attributes.sizes.full;
                     if (typeof attachment.attributes.sizes.thumbnail !== "undefined") thumbnail = attachment.attributes.sizes.thumbnail;
-                    if (val != '') val += ',';
+                    if (val !== '') val += ',';
                     val += attachment.id;
                     $('<div class="image-sort-item" id="image-sort-'+attachment.id+'"><img src="' + thumbnail.url + '" /></div>').appendTo(imagePro);
                 });

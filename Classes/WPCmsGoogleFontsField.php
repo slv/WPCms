@@ -21,10 +21,15 @@ Class WPCmsGoogleFontsField Extends WPCmsField {
       if (in_array($font, $elements)) continue;
 
       $elements[] = $font;
-      $f = array_shift(explode(':', $font));
 
-      if (isset($families[$f])) $families[$f] .= ',' . array_pop(explode(':', $font));
-      else $families[$f] = $font;
+      $font_exploded = explode(':', $font);
+      $ff = array_shift($font_exploded);
+
+      $font_exploded = explode(':', $font);
+      $fw = array_pop($font_exploded);
+
+      if (isset($families[$ff])) $families[$ff] .= ',' . $fw;
+      else $families[$ff] = $font;
     }
 
 
@@ -34,11 +39,17 @@ Class WPCmsGoogleFontsField Extends WPCmsField {
 
     foreach ($fontsSelectors as $selector => $font) {
 
-      echo $selector . "{ font-family: '" . array_shift(explode(':', $font)) . "'; font-weight:" .
-        preg_replace(array("/^(regular|italic)$/", "/^(\d*)(italic)$/"), array("400", "$1"), array_pop(explode(':', $font))) .
+      $font_exploded = explode(':', $font);
+      $ff = array_shift($font_exploded);
+
+      $font_exploded = explode(':', $font);
+      $fw = array_pop($font_exploded);
+
+      echo $selector . "{ font-family: '" . $ff . "'; font-weight:" .
+        preg_replace(array("/^(regular|italic)$/", "/^(\d*)(italic)$/"), array("400", "$1"), $fw) .
         "; font-style:" .
-        (preg_replace(array("/^(\d*)(.*)/", "/regular/"), array("$2", "normal"), array_pop(explode(':', $font))) ?
-        preg_replace(array("/^(\d*)(.*)/", "/regular/"), array("$2", "normal"), array_pop(explode(':', $font))) : 'normal') .
+        (preg_replace(array("/^(\d*)(.*)/", "/regular/"), array("$2", "normal"), $fw) ?
+        preg_replace(array("/^(\d*)(.*)/", "/regular/"), array("$2", "normal"), $fw) : 'normal') .
         "; }" . PHP_EOL;
     }
 
@@ -69,18 +80,23 @@ Class WPCmsGoogleFontsField Extends WPCmsField {
 
     foreach ($fonts as $font) {
 
-      $f = array_shift(explode(':', $font));
+      $font_exploded = explode(':', $font);
+      $ff = array_shift($font_exploded);
 
-      if (isset($families[$f])) $families[$f] .= ',' . array_pop(explode(':', $font));
-      else $families[$f] = $font;
+      $font_exploded = explode(':', $font);
+      $fw = array_pop($font_exploded);
+
+      if (isset($families[$ff])) $families[$ff] .= ',' . $fw;
+      else $families[$ff] = $font;
     }
 
     foreach ($fonts as $font) {
 
-      $f = array_shift(explode(':', $font));
+      $font_exploded = explode(':', $font);
+      $ff = array_shift($font_exploded);
 
       $selected = ($font == $data['value'] ? ' selected="selected"' : '');
-      echo '<option ', $selected,' value="', esc_attr($font), '" data-font="', urlencode($families[$f]), '">', $font, '</option>';
+      echo '<option ', $selected,' value="', esc_attr($font), '" data-font="', urlencode($families[$ff]), '">', $font, '</option>';
     }
 
     echo '</select>';
