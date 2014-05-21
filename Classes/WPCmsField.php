@@ -112,7 +112,7 @@ Abstract Class WPCmsField {
 
     if ($new && $new != $old) {
 
-      if (get_magic_quotes_gpc()) $new = stripslashes($new);
+      if (is_string($new) && get_magic_quotes_gpc()) $new = stripslashes($new);
 
       update_post_meta($postID, $field_name, $new);
     }
