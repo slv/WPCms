@@ -71,11 +71,28 @@ function _module($id, $postID = false) {
       global $module;
 
       $module = array();
+      $module['wpcms_module_unique_id'] = $key;
       foreach ($m as $k => $v) {
         $module[preg_replace("/^" . WPCmsStatus::getStatus()->getData('pre') . "/", "", $k)] = $v;
       }
 
       get_template_part('Modules/' . $module['widget_type'] . '/view');
+    }
+  }
+}
+
+function _module_styles($id, $postID = false) {
+  if (_m($id, $postID)) {
+    foreach(_m($id, $postID) as $key => $m) {
+      global $module;
+
+      $module = array();
+      $module['wpcms_module_unique_id'] = $key;
+      foreach ($m as $k => $v) {
+        $module[preg_replace("/^" . WPCmsStatus::getStatus()->getData('pre') . "/", "", $k)] = $v;
+      }
+
+      get_template_part('Modules/' . $module['widget_type'] . '/head');
     }
   }
 }

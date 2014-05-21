@@ -33,7 +33,7 @@ Class WPCmsGoogleFontsField Extends WPCmsField {
     }
 
 
-    echo "<link href='http://fonts.googleapis.com/css?family=" . str_replace(" ", "+", implode('|', $families)) . "' rel='stylesheet' type='text/css'>" . PHP_EOL .
+    echo "<link href='http://fonts.googleapis.com/css?family=" . urlencode(implode('|', $families)) . "' rel='stylesheet' type='text/css'>" . PHP_EOL .
       "<style type=\"text/css\">" . PHP_EOL;
 
 
