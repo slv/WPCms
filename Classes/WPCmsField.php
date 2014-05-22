@@ -109,15 +109,15 @@ Abstract Class WPCmsField {
 
     $old = get_post_meta($postID, $field_name, true);
     $new = isset($_POST[$field_name]) ? $_POST[$field_name] : false;
+    
+    if (is_string($new) && get_magic_quotes_gpc()) {
+      $new = wp_slash(stripslashes($new));
+    }
 
     if ($new && $new != $old) {
-
-      if (is_string($new) && get_magic_quotes_gpc()) $new = stripslashes($new);
-
       update_post_meta($postID, $field_name, $new);
     }
     elseif ('' == $new && $old) {
-
       delete_post_meta($postID, $field_name, $old);
     }
   }
