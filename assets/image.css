@@ -1,0 +1,22 @@
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  display:block;
+  margin-bottom: 10px;
+  width:100%;
+  min-height: 50px;
+  border-radius: 4px;
+}
+
+.image-wrapper:empty {
+  background:#eee;
+  width:50px;
+}
+
+.image-sort-item {
+  display:block;
+  margin:0px;
+  cursor: pointer; }
+
+.image-sort-item img {
+  display: block; }
