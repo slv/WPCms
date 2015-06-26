@@ -8,29 +8,29 @@ Creare una pagina per le opzioni
 
 
 	$settingsPage = new WPCmsSettingsPage($config)
-	
+
 	# Parametri:
-	
+
 	$config
 	- array di configurazione
-	
+
 	'title' => Il titolo della Pagina
-	
+
 		il titolo che appare nella barra laterale dell'admin (es. 'Font e Colori')
-	
+
 	'menu_slug' => Slug
-	
+
 		stringa unica che identifica la pagina (es. 'theme_settings')
-		
+
 	'fields' => array dei campi personalizzati
-	
+
 		elenco di campi che devono essere visualizzati in questa pagina (checkbox, textarea, select etc…)
-	
+
 	'parent_slug' => Slug della pagina Genitore
-	
+
 		se la pagina di settings deve essere visualizzata come figlia di un'altra pagina nella barra laterale,
 		indicare qui il menu_slug della pagina parent.
-		
+
 
 ### Opzioni WPCmsSettingsPage
 
@@ -43,18 +43,18 @@ Creare una pagina per le opzioni
 Creare custom post type
 
 	$customPostType = new WPCmsPostType($config);
-	
+
 	# Parametri
-	
+
 	$config
 	- array di configurazione
-	
+
 	'post_type' => nome del post type (univoco)
-	
+
 		ad es. 'projects', 'slideshows'
-	
+
 	'fields' => array dei campi personalizzati
-	
+
 		elenco di campi che devono essere visualizzati per ogni post (checkbox, textarea, select etc…)
 
 
@@ -65,7 +65,7 @@ Creare custom post type
 
 
 	'fields' è un array così composto:
-		
+
 	array(
 		'wpcms-custom-1' => array(
 			'title' => 'Campi Custom 1',
@@ -76,31 +76,40 @@ Creare custom post type
 			'fields' => elenco di campi per il box "Campi Custom 2"
 		)
     )
-    
+
     a sua volta 'fields' è un elenco di campi personalizzati (checkbox, input, select etc...)
-    	
+
     esempio:
-    
-	
+
+
 	array(
 		'wpcms-custom-1' => array(
 			'title' => 'Campi Custom 1',
 			'fields' => array(
-				new WPCmsInputField ('input1', 'WPCmsInputField 1', 'Example of WPCmsInputField'),
-				new WPCmsTextField ('text1', 'WPCmsTextField 1', 'Example of WPCmsTextField'),
-				new WPCmsTextareaField ('textarea1', 'WPCmsTextareaField 1', 'Example of WPCmsTextareaField')
+				new WPCmsInputField (array(
+					'id' => 'input1',
+					'name' => 'WPCmsInputField 1',
+					'description' => 'Example of WPCmsInputField')),
+				new WPCmsTextField (array(
+					'id' => 'text1',
+					'name' => 'WPCmsTextField 1',
+					'description' => 'Example of WPCmsTextField')),
+				new WPCmsTextareaField (array(
+					'id' => 'textarea1',
+					'name' => 'WPCmsTextareaField 1',
+					'description' => 'Example of WPCmsTextareaField'))
 			)
 		),
 		...
     )
-		
-	
-	  
+
+
+
 
 ### Metodi WPCmsPostType
 
 ####setArgs($args)
-	
+
 	setta gli arguments di questa pagina: http://codex.wordpress.org/Function_Reference/register_post_type
 
 	valori di default:
@@ -156,7 +165,7 @@ Creare custom post type
 ### _o($label, $default = '')
 
 	restituisce l'opzione settata in una WPCmsSettingsPage e se non la trova restituisce $default
-	
+
 	ad esempio se in una pagina c'è un textinput con id 'colore_header', per ricavarlo nel frontend posso usare _o('colore_header', '#ffffff')
 
 
@@ -165,21 +174,21 @@ Creare custom post type
 ### _m($label, $postID = false)
 
 	dentro al Loop posso ricavare il metadata con id = $label, fuori dal Loop devo passare anche l'ID del post
-	
+
 
 	in Loop:
-	
+
 	while(have_posts()) { the_post();
 		echo '<h1>' . the_title() . '</h1>';
 		echo '<h2>' . _m('sottotitolo') . '</h2>';
 	}
-	
+
 	----
-	
+
 	fuori dal Loop:
-	
+
 	$postIds = array(234, 235, 236);
-	
+
 	foreach($postIds as $postId) {
 		echo '<h1>' . get_the_title($postId) . '</h1>';
 		echo '<h2>' . _m('sottotitolo', $postId) . '</h2>';
@@ -211,7 +220,7 @@ come campi personalizzati mi servono una mappa Google, un immagine e 2 campi di 
 	));
 
 	$postTypeProgetti->register();
-	
+
 dentro a 'google-map-box' e 'immagine-e-testi-box' devo settare title e i campi:
 
 	$postTypeProgetti = new WPCmsPostType(array(
@@ -274,13 +283,13 @@ quindi:
 
 
  i file che gestiranno l'elenco e il post singolo di questo tipo sono:
- 
+
  	archive-progetti.php
  	single-progetti.php
- 
- 
+
+
  se voglio collegare una taxonomy per filtrare i post devo registrarla:
- 
+
  	register_taxonomy(
 		'categorie-progetti',
 		null,
@@ -294,10 +303,10 @@ quindi:
 			'rewrite' => array('slug' => 'categorie-progetti'),
 		)
 	);
-	
+
 e poi collegarla al post
 
- 	
+
  	$postTypeProgetti->setArgs(array(
 		'taxonomies' => array('categorie-progetti')
 	));
