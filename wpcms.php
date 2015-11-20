@@ -15,3 +15,10 @@ require_once "WPCmsIncludes.php";
 
 // prefix to all postmeta and options, (not required)
 WPCmsStatus::getStatus()->setData('pre', 'wpcms_');
+
+
+function wpcms_setup () {
+	$init = get_template_directory() . '/WPCms-main.php';
+	if (file_exists($init)) require $init;
+}
+add_action('setup_theme', 'wpcms_setup');

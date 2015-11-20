@@ -14,12 +14,25 @@ Class WPCmsModulesField Extends WPCmsField {
     if (is_array($this->modules)) foreach ($this->modules as $key => $module) {
       $this->modules[$key]['fields'] = require get_template_directory() . "/Modules/" . $module['type'] . "/admin.php";
 
+      add_shortcode(str_replace('-', '_', $module['type']), array($this, 'renderModule'));
+
       if (!empty($module['fields'])) foreach ($module['fields'] as $field) {
         $field->id = preg_replace("/^" . WPCmsStatus::getStatus()->getData('pre') . "/", "", $field->id);
       }
     }
 
     return $this;
+  }
+
+  public function renderModule ($atts, $content, $tags) {
+    global $module;
+
+    $module = array();
+    foreach ($atts as $k => $v) {
+      $module[$k] = $v;
+    }
+
+    get_template_part('Modules/' . str_replace('_', '-', $tags) . '/view');
   }
 
   public function addActionAdminEnqueueScripts ($hook)
