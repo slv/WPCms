@@ -19,8 +19,8 @@ Class WPCmsImageField Extends WPCmsField {
       </div>
     <?php endforeach; endif; ?></div>
     <input id="<?php echo $data['id']; ?>" class="image-input" type="hidden" name="<?php echo $data['name']; ?>" value="<?php echo esc_attr($data['value']); ?>" />
-    <input type="button" value="<?php _e('Select Image', WPCmsStatus::getStatus()->getData('textdomain')); ?>" class="button-primary image-button" />
-    <input type="button" value="<?php _e('Remove Image', WPCmsStatus::getStatus()->getData('textdomain')); ?>" class="button-secondary image-delete"<?php if (!empty($data['value'])) echo ' style="display:none;"'; ?> />
+    <input type="button" value="<?php _e('Select Image', 'wpcms'); ?>" class="button-primary image-button" />
+    <input type="button" value="<?php _e('Remove Image', 'wpcms'); ?>" class="button-secondary image-delete"<?php if (!empty($data['value'])) echo ' style="display:none;"'; ?> />
 
     <?php
   }

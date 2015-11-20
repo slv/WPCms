@@ -7,7 +7,7 @@ Class WPCmsPostType {
     $this->post_type = $config['post_type'];
     $this->custom_fields = isset($config['fields']) ? $config['fields'] : array();
 
-    $td = WPCmsStatus::getStatus()->getData('textdomain');
+    $td = 'wpcms';
 
     $labels = array(
       'name' => __('Custom Items', $td),
@@ -194,7 +194,7 @@ Class WPCmsPostType {
       if (!isset($field['template-file']) || $post_id && ($template_file == $field['template-file'] || (is_array($field['template-file']) && in_array($template_file, $field['template-file']))))
       {
         $field = array_merge(array(
-          'title' => __('Custom Fields', WPCmsStatus::getStatus()->getData('textdomain')),
+          'title' => __('Custom Fields', 'wpcms'),
           'context' => 'normal',
           'priority' => 'high'), $field);
 

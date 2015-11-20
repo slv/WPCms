@@ -3,11 +3,11 @@
 Class WPCmsCheckboxField Extends WPCmsField {
 
   public function renderLabel ($post) {
-    echo '<label for="', $this->id, '" class="', $this->posttype_label_class, '">', __($this->name, WPCmsStatus::getStatus()->getData('textdomain')), '</label>';
+    echo '<label for="', $this->id, '" class="', $this->posttype_label_class, '">', __($this->name, 'wpcms'), '</label>';
   }
 
   public function renderSettingLabel () {
-    echo '<label for="', $this->id, '" class="', $this->settings_label_class, '">', __($this->name, WPCmsStatus::getStatus()->getData('textdomain')), '</label>';
+    echo '<label for="', $this->id, '" class="', $this->settings_label_class, '">', __($this->name, 'wpcms'), '</label>';
   }
 
   public function renderInnerInput ($post, $data = array()) {

@@ -32,8 +32,8 @@ Class WPCmsGalleryField Extends WPCmsField {
       <?php endforeach; endif; ?>
     </div>
     <input id="<?php echo $data['id']; ?>" class="gallery-input" type="hidden" name="<?php echo $data['name']; ?>" value="<?php echo esc_attr($data['value']); ?>" />
-    <input type="button" value="<?php _e('Edit Gallery', WPCmsStatus::getStatus()->getData('textdomain')); ?>" class="button gallery-button" />
-    <input type="button" value="<?php _e('Delete Gallery', WPCmsStatus::getStatus()->getData('textdomain')); ?>" class="button gallery-delete"<?php if (!empty($data['value'])) echo ' style="display:none;"'; ?> />
+    <input type="button" value="<?php _e('Edit Gallery', 'wpcms'); ?>" class="button gallery-button" />
+    <input type="button" value="<?php _e('Delete Gallery', 'wpcms'); ?>" class="button gallery-delete"<?php if (!empty($data['value'])) echo ' style="display:none;"'; ?> />
 
     <?php
   }

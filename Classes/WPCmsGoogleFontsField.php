@@ -72,7 +72,7 @@ Class WPCmsGoogleFontsField Extends WPCmsField {
     echo '<select class="form-control" type="text" name="', $data['name'], '" id="', $data['id'], '">';
 
     if (!empty($data['value']) && !isset($this->options[$this->default]))
-      echo '<option value="">', __('Select', WPCmsStatus::getStatus()->getData('textdomain')),'...</option>';
+      echo '<option value="">', __('Select', 'wpcms'),'...</option>';
 
     $fonts = file_get_contents(WPCMS_STYLESHEET_DIR . '/assets/google.fonts.list.20140215');
     $fonts = explode(PHP_EOL, $fonts);
@@ -101,7 +101,7 @@ Class WPCmsGoogleFontsField Extends WPCmsField {
 
     echo '</select>';
 
-    echo '<p class="form-control-static demo" data-fontsize="', $this->fontSize, '">', ($data['value'] != '' ? $data['value'] : 'Font: ' . __('Default', WPCmsStatus::getStatus()->getData('textdomain'))), '</p>';
+    echo '<p class="form-control-static demo" data-fontsize="', $this->fontSize, '">', ($data['value'] != '' ? $data['value'] : 'Font: ' . __('Default', 'wpcms')), '</p>';
     echo '</div>';
   }
 }

@@ -81,7 +81,7 @@ Class WPCmsDynamicListField Extends WPCmsField {
       $data['value'] = array('type' => '', 'fields' => array());
     }
 
-    echo '<option value="">', __('Select', WPCmsStatus::getStatus()->getData('textdomain')), '...</option>';
+    echo '<option value="">', __('Select', 'wpcms'), '...</option>';
 
     $listFields = false;
 

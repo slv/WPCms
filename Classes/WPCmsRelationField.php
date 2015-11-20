@@ -65,7 +65,7 @@ Class WPCmsRelationField Extends WPCmsField {
 
     echo '<div class="form-inline multi-select-field ui-front">';
 
-    echo '<label>Add item to list:</label><input class="form-control input-sm multi-select-filter" size="20" placeholder="', __('start digit...', WPCmsStatus::getStatus()->getData('textdomain')),'" />';
+    echo '<label>Add item to list:</label><input class="form-control input-sm multi-select-filter" size="20" placeholder="', __('start digit...', 'wpcms'),'" />';
 
     echo '<div class="options-list-sortable" style="width:100%;min-height:50px;max-height:200px;">';
 

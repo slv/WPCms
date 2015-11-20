@@ -41,8 +41,8 @@ Abstract Class WPCmsField {
   }
 
   public function renderLabel ($post) {
-    echo '<label for="', $this->id, '" class="', $this->posttype_label_class, '">', __($this->name, WPCmsStatus::getStatus()->getData('textdomain')),
-      ($this->description ? '<br /><small>' . __($this->description, WPCmsStatus::getStatus()->getData('textdomain')) . '</small>' : ''),
+    echo '<label for="', $this->id, '" class="', $this->posttype_label_class, '">', __($this->name, 'wpcms'),
+      ($this->description ? '<br /><small>' . __($this->description, 'wpcms') . '</small>' : ''),
       '</label>';
   }
 
@@ -258,8 +258,8 @@ Abstract Class WPCmsField {
   }
 
   public function renderSettingLabel () {
-    echo '<label for="', $this->id, '" class="', $this->settings_label_class, '">', __($this->name, WPCmsStatus::getStatus()->getData('textdomain')),
-      ($this->description ? '<br /><small>' . __($this->description, WPCmsStatus::getStatus()->getData('textdomain')) . '</small>' : ''),
+    echo '<label for="', $this->id, '" class="', $this->settings_label_class, '">', __($this->name, 'wpcms'),
+      ($this->description ? '<br /><small>' . __($this->description, 'wpcms') . '</small>' : ''),
       '</label>';
   }
 
