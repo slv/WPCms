@@ -4,6 +4,8 @@ Class WPCmsSettingsPage {
 
   function __construct($config) {
 
+    if (!is_user_logged_in()) return;
+
     $this->title = isset($config['title']) ? $config['title'] : 'Untitled';
     $this->slug = isset($config['menu_slug']) ? $config['menu_slug'] : '';
     $this->fields = isset($config['fields']) ? $config['fields'] : array();

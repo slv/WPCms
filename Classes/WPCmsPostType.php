@@ -58,6 +58,8 @@ Class WPCmsPostType {
     add_action('after_setup_theme', array($this, 'after_setup_theme'));
     add_action('init', array($this, 'add_posttype'));
 
+    if (!is_user_logged_in()) return;
+
     foreach ($this->custom_fields as $custom_field) {
 
       foreach ($custom_field['fields'] as $field) {
@@ -147,6 +149,8 @@ Class WPCmsPostType {
 
       register_post_type($this->post_type, $this->args);
     }
+
+    if (!is_user_logged_in()) return;
 
     add_action('save_post', array($this, 'custom_fields_save'));
 
