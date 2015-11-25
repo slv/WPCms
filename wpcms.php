@@ -1,7 +1,9 @@
 <?php
 /*
 Plugin Name: WPCms
-Version:     1.0
+Plugin URI:  https://www.scozzese.com/
+Description: Utilities for create Custom Post Type, Modules, Shortcode
+Version:     1.0.0
 Author:      Michele Salvini
 */
 
