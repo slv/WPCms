@@ -14,6 +14,8 @@ Class WPCmsModulesField Extends WPCmsField {
     if (is_array($this->modules)) foreach ($this->modules as $key => $module) {
       $this->modules[$key]['fields'] = require get_template_directory() . "/Modules/" . $module['type'] . "/admin.php";
 
+      new WPCmsEditorPlugin(array('id' => str_replace('-', '_', $module['type'])));
+
       add_shortcode(str_replace('-', '_', $module['type']), array($this, 'renderModule'));
 
       if (!empty($module['fields'])) foreach ($module['fields'] as $field) {

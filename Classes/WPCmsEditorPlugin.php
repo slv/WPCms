@@ -19,12 +19,14 @@ Class WPCmsEditorPlugin {
   }
 
   function add_buttons ($plugins) {
-    $plugins[$this->id] = get_template_directory_uri() . '/Plugins/' . $this->id . '/script.js';
+    if (file_exists(get_template_directory() . '/Plugins/' . $this->id . '/script.js'))
+      $plugins[$this->id] = get_template_directory_uri() . '/Plugins/' . $this->id . '/script.js';
     return $plugins;
   }
 
   function register_buttons ($buttons) {
-    array_push($buttons, $this->id);
+    if (!in_array($this->id, $buttons))
+      array_push($buttons, $this->id);
     return $buttons;
   }
 }
