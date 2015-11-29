@@ -41,10 +41,14 @@ Class WPCmsEditorPlugin {
         <div>[<?php echo $id; ?><?php if (!empty($plugin['fields'])) foreach ($plugin['fields'] as $field) {
           echo ' ' . $field['name'] . '="<i>' . $field['type'] . '</i>"';
         } ?>] ... some content ... [/<?php echo $id; ?>]</div>
-        <div class="wpcms-editor-plugin-item" data-shortcode="<?php echo $id; ?>" id="wpcms-editor-plugin-<?php echo $id; ?>"><?php
+        <div class="wpcms-editor-plugin-item" data-shortcode="<?php echo $id; ?>" id="wpcms-editor-plugin-<?php echo $id; ?>" style="display:none;"><?php
           if (!empty($plugin['fields']))
             foreach ($plugin['fields'] as $field) {
-              echo '<div class="wpcms-editor-plugin-input" data-input-type="' . $field['type'] . '" data-input-name="' . $field['name'] . '">editor wpcms-editor-plugin-input-' . $field['type'] . '</div>';
+              $atts = array();
+              foreach ($field as $key => $value) {
+                $atts[] = 'data-wpcms-editor-plugin-' . $key . '="' . $value . '"';
+              }
+              echo '<div class="wpcms-editor-plugin-input" ' . implode(' ', $atts) . '>editor wpcms-editor-plugin-input-' . $field['type'] . '</div>';
             }
         ?></div>
       <?php
