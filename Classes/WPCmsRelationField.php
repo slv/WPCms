@@ -59,6 +59,7 @@ Class WPCmsRelationField Extends WPCmsField {
       $posts = get_posts(array(
         'post_status' => 'any',
         'suppress_filters' => 0,
+        'numberposts' => -1,
         'post__in' => array_map('intval', explode(',', trim($data['value'], ','))),
         'post_type' => $this->postTypeOfRelated != '' ? $this->postTypeOfRelated : $post->post_type));
     }
