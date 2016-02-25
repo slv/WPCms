@@ -21,6 +21,8 @@ Class WPCmsEditorPlugin {
   }
 
   function admin_enqueue_scripts ($hook) {
+    wp_enqueue_style('wpcms-editor-plugin-' . $field['type'], WPCMS_STYLESHEET_URI . '/assets/editor.plugin.css');
+
     foreach ($this->plugins as $id => $plugin) {
       foreach ($plugin['fields'] as $field) {
         if (!empty($field['scripts']))
@@ -67,7 +69,10 @@ Class WPCmsEditorPlugin {
 
                 $atts[] = 'data-wpcms-editor-plugin-' . $key . '="' . esc_attr($attr) . '"';
               }
-              echo '<div class="wpcms-editor-plugin-input" ' . implode(' ', $atts) . '>editor wpcms-editor-plugin-input-' . $field['type'] . '</div>';
+              echo '<div class="wpcms-editor-plugin-field wpcms-editor-plugin-field-' . $field['type'] . '">' .
+                  '<div class="wpcms-editor-plugin-field-label">' . $field['name'] . '</div>' .
+                  '<div class="wpcms-editor-plugin-field-input" ' . implode(' ', $atts) . '></div>' .
+              '</div>';
             }
         ?></div>
       <?php

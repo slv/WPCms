@@ -6,7 +6,6 @@ WPCmsEditorFields.radio = {
     var options= JSON.parse(attributes.options);
     if (!attributes.options) return;
 
-
     $.each(options, function (k, v) {
       var $input = $('<input>', {
         type: 'radio',
@@ -16,7 +15,7 @@ WPCmsEditorFields.radio = {
 
       var $label = $('<label>', {
         text: v.label
-      }).append($input).appendTo($field);
+      }).prepend($input).appendTo($field);
     });
   },
 

@@ -11,7 +11,6 @@ WPCmsEditorFields.image = {
     var $gallery = $('<div>', {
       'class': 'wpcms-editor-plugin-preview',
       css: {
-        width: '100%',
         overflow: 'hidden'
       }
     }).appendTo($field);

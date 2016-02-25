@@ -10,10 +10,10 @@ WPCmsEditorFields.colorpicker = {
   },
 
   set: function ($field, v) {
-    $field.find('input').val(v);
+    $field.find('input.wp-color-picker').wpColorPicker('color', v);
   },
 
   get: function ($field) {
-    return $field.find('input').val();
+    return $field.find('input.wp-color-picker').val();
   }
 }

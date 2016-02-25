@@ -27,7 +27,7 @@ jQuery(function($) {
 
       $('.wpcms-editor-plugin-item').each(function () {
         var $form = $(this),
-            $fields = $form.find('.wpcms-editor-plugin-input'),
+            $fields = $form.find('.wpcms-editor-plugin-field-input'),
             shortcodeName = $form.attr('data-shortcode');
 
         if (!shortcodeName) return;
@@ -110,6 +110,8 @@ jQuery(function($) {
           });
 
           tb_show('Shortcode: ' + shortcodeName, '#TB_inline?inlineId=wpcms-editor-plugin-' + shortcodeName);
+          $("#TB_ajaxContent").removeAttr('style');
+          $("#TB_window").css('overflow-y', 'auto');
         });
 
         wp.mce.views.register(shortcodeName, {
@@ -147,6 +149,8 @@ jQuery(function($) {
             setTimeout(function () {
               $(window).trigger('focus');
               tb_show('Shortcode: ' + shortcodeName, '#TB_inline?inlineId=wpcms-editor-plugin-' + shortcodeName);
+              $("#TB_ajaxContent").removeAttr('style');
+              $("#TB_window").css('overflow-y', 'auto');
             }, 20)
           }
         });
