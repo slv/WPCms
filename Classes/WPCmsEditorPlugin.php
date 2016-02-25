@@ -23,6 +23,16 @@ Class WPCmsEditorPlugin {
   function admin_enqueue_scripts ($hook) {
     foreach ($this->plugins as $id => $plugin) {
       foreach ($plugin['fields'] as $field) {
+        if (!empty($field['scripts']))
+          foreach ($field['scripts'] as $script) {
+            wp_enqueue_script($script);
+          }
+
+        if (!empty($field['styles']))
+          foreach ($field['styles'] as $style) {
+            wp_enqueue_style($style);
+          }
+
         wp_enqueue_script('wpcms-editor-plugin-' . $field['type'], WPCMS_STYLESHEET_URI . '/assets/editor.plugin.' . $field['type']. '.js');
       }
     }

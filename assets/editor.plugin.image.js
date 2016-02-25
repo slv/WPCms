@@ -2,7 +2,7 @@ var WPCmsEditorFields = WPCmsEditorFields || {};
 
 WPCmsEditorFields.image = {
 
-  init: function ($, $field, inputName) {
+  init: function ($, $field, inputName, attributes) {
     var $input = $('<input>', {
       type: 'hidden',
       name: inputName
@@ -30,7 +30,7 @@ WPCmsEditorFields.image = {
           var mojo_media_frame = wp.media.frames.mojo_media_frame = wp.media({
               className: 'media-frame mojo-media-frame',
               frame: 'select',
-              multiple: $field.attr('data-wpcms-editor-plugin-multiple') ? 'add' : false,
+              multiple: attributes.multiple ? 'add' : false,
               library: {
                   type: 'image'
               }
