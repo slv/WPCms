@@ -21,6 +21,11 @@ Class WPCmsEditorPlugin {
   }
 
   function admin_enqueue_scripts ($hook) {
+    foreach ($this->plugins as $id => $plugin) {
+      foreach ($plugin['fields'] as $field) {
+        wp_enqueue_script('wpcms-editor-plugin-' . $field['type'], WPCMS_STYLESHEET_URI . '/assets/editor.plugin.' . $field['type']. '.js');
+      }
+    }
   }
 
   function add_meta_boxes () {
@@ -46,7 +51,11 @@ Class WPCmsEditorPlugin {
             foreach ($plugin['fields'] as $field) {
               $atts = array();
               foreach ($field as $key => $value) {
-                $atts[] = 'data-wpcms-editor-plugin-' . $key . '="' . $value . '"';
+                $attr = $value;
+
+                if (is_array($value)) $attr = json_encode($value);
+
+                $atts[] = 'data-wpcms-editor-plugin-' . $key . '="' . esc_attr($attr) . '"';
               }
               echo '<div class="wpcms-editor-plugin-input" ' . implode(' ', $atts) . '>editor wpcms-editor-plugin-input-' . $field['type'] . '</div>';
             }
